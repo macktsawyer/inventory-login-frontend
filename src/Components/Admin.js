@@ -8,7 +8,7 @@ const Admin = () => {
     <>
         <div>Admin</div>
         <footer className="footerBar">
-            <Link to='/Login'><Button variant="text"><strong>Login</strong></Button></Link>
+            <Link to='/'><Button variant="text"><strong>Logout</strong></Button></Link>
         </footer>
     </>
   )
