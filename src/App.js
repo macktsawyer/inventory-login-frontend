@@ -3,7 +3,7 @@ import Login from './Components/Login';
 import Home from './Components/Home';
 import Inventory from './Components/Inventory';
 import About from './Components/About';
-import Admin from './Components/Admin';
+import Admin from './Components/Admin/Admin';
 import { Routes, Route } from 'react-router-dom';
 
 function App() {
