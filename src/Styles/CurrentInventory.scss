@@ -1,0 +1,13 @@
+.currentInventoryMain {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: 100vw;
+    height: 60vh;
+    .inventoryShowcase {
+        height: 90%;
+        width: 90%;
+        align-self: center;
+    }
+}

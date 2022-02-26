@@ -1,0 +1,10 @@
+.newItemFormBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    .newItemForm {
+        border: 1px solid black;
+    }
+}
