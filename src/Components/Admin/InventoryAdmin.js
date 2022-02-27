@@ -10,27 +10,33 @@ const InventoryAdmin = () => {
       <div>InventoryAdmin</div>
       <Box className="newItemFormBox">
         <form className="newItemForm">
-          <Button>Add Inventory</Button>
           <TextField 
-          id="outlined-basic" 
+          id="standard-basic" 
           label="Name" 
-          variant="outlined" />
+          variant="standard"
+          className="inputField" />
 
           <TextField
-          id="outlined-multiline-flexible"
+          id="standard-basic-flexible"
           label="Description"
+          variant="standard"
           multiline
-          maxRows={6} />
+          maxRows={6} 
+          className="inputField" />
 
           <TextField 
-          id="outlined-basic" 
+          id="standard-basic" 
           label="Price" 
-          variant="outlined" />
+          variant="standard" 
+          className="inputField" />
 
           <TextField 
-          id="outlined-basic" 
+          id="standard-basic" 
           label="Outlined" 
-          variant="outlined" />
+          variant="standard"
+          className="inputField" />
+
+          <Button>Add Inventory</Button>
         </form>
       </Box>
     </>

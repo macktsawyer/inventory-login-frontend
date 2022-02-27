@@ -8,12 +8,12 @@ import CurrentInventory from './CurrentInventory';
 const Admin = () => {
   return (
     <>
-        <div>Admin</div>
-        <InventoryAdmin />
-        <CurrentInventory />
-        <footer className="footerBar">
-            <Link to='/'><Button variant="text"><strong>Logout</strong></Button></Link>
-        </footer>
+      <Link className="homeButton" to='/'><Button variant="text"><strong>Home</strong></Button></Link>
+      <InventoryAdmin />
+      <CurrentInventory />
+      <footer className="footerBar">
+          <Link to='/'><Button variant="text"><strong>Logout</strong></Button></Link>
+      </footer>
     </>
   )
 }

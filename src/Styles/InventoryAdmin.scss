@@ -5,6 +5,9 @@
     align-items: center;
     width: 100vw;
     .newItemForm {
-        border: 1px solid black;
+        width: 20vw;
+        .inputField {
+            width: 100%;
+        }
     }
 }
