@@ -93,6 +93,7 @@ const Login = () => {
         </div>
         <Button type="submit" onClick={handleSubmit}>Login</Button>
         <Link className="goBack" to='/'><Button>Go Back</Button></Link>
+        <br/>
         { isError && <error>The username or Password provided were incorrect</error>}
       </form>
     </div>
