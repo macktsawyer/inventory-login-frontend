@@ -1,13 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import Button from '@mui/material/Button';
-import AuthContext from '../Services/authContext';
 import { Link } from 'react-router-dom';
 import '../Styles/NavBar.scss';
 
 const NavBar = () => {
-
-  const { loggedIn } = useContext(AuthContext);
-
   return (
     <>
         <ul className="navBar">

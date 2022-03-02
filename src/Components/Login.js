@@ -5,14 +5,18 @@ import InputAdornment from '@mui/material/InputAdornment';
 import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../Services/authContext';
 import '../Styles/Login.scss';
-
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const { setAuthTokens } = useAuth();
+  let Navigate = useNavigate();
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
@@ -37,13 +41,19 @@ const Login = () => {
     })
     const data = await response.json()
 
-    if (data.username) {
-      alert('Login Successful')
-      window.location.href = '/Admin';
+    if (data) {
+      setAuthTokens(data.token);
+      setIsLoggedIn(true);
+      alert('Log in successful')
+      Navigate('/Admin')
     } else {
-      alert('Please check your username and password')
+      setIsError(true)
     }
-    console.log(data)
+
+  }
+
+  if (isLoggedIn) {
+    <Navigate to='/dashboard' />
   }
 
   const handleSubmit = (e) => {
@@ -83,6 +93,7 @@ const Login = () => {
         </div>
         <Button type="submit" onClick={handleSubmit}>Login</Button>
         <Link className="goBack" to='/'><Button>Go Back</Button></Link>
+        { isError && <error>The username or Password provided were incorrect</error>}
       </form>
     </div>
   )
