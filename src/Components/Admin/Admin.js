@@ -7,15 +7,13 @@ import CurrentInventory from './CurrentInventory';
 
 const Admin = () => {
 
-  
-
   return (
     <>
       <Link className="homeButton" to='/'><Button variant="text"><strong>Home</strong></Button></Link>
       <InventoryAdmin />
       <CurrentInventory />
       <footer className="footerBar">
-          <Link to='/'><Button variant="text"><strong>Logout</strong></Button></Link>
+          <Link to='/Logout'><Button variant="text"><strong>Logout</strong></Button></Link>
       </footer>
     </>
   )
