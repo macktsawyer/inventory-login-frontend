@@ -32,7 +32,7 @@ const InventoryAdmin = () => {
 
           <TextField 
           id="standard-basic" 
-          label="Outlined" 
+          label="Images" 
           variant="standard"
           className="inputField" />
 
