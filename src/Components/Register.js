@@ -31,8 +31,14 @@ const Register = () => {
     
     async function registrationAttempt(e) {
         e.preventDefault();
-
-        if (password === passwordConf) {
+        if (password === '' || password.length < 6 || password === null) {
+          setErrorMessage('Password too short');
+          setIsError(true);
+        } else if (password === 'password' || password === 'Password') {
+          setErrorMessage('Password cannot be password');
+          setIsError(true);
+        } else {
+          if (password === passwordConf) {
             const response = await fetch('http://localhost:3001/user/register', {
                 method: 'POST',
                 headers: {
@@ -48,6 +54,7 @@ const Register = () => {
               if (data) {
                 setAuthTokens(data.token);
                 setRegistered(true);
+                setIsError(false);
                 alert('Registration successful')
                 Navigate('/Login')
               } else {
@@ -55,8 +62,9 @@ const Register = () => {
                 setErrorMessage(data)
                 console.log(data)
               }
-        } else {
+          } else {
             setErrorMessage('Passwords do not match')
+          }
         }
       }
     
@@ -71,17 +79,20 @@ const Register = () => {
     
     const handleUsername = (e) => {
         e.preventDefault();
-        setUsername(e.target.value)
+        setUsername(e.target.value);
+        setIsError(false);
     }
     
     const handlePassword = (e) => {
         e.preventDefault();
-        setPassword(e.target.value)
+        setPassword(e.target.value);
+        setIsError(false);
     }
 
     const handlePasswordConf = (e) => {
         e.preventDefault();
-        setPasswordConf(e.target.value)
+        setPasswordConf(e.target.value);
+        setIsError(false);
     }
 
   return (
@@ -116,11 +127,12 @@ const Register = () => {
               </InputAdornment>
           }  />
         </div>
+        { isError && <div style={{color: "red"}}>{errorMessage}</div>}
+        <br/>
         <Button type="submit" onClick={handleSubmit}>Register</Button>
         <Link className="goBack" to='/'><Button>Go Back</Button></Link>
         <br/>
         <Link className="LoginAccount" to='/Login'><Button size="small">Already have an account?</Button></Link>
-        { isError && <error>{errorMessage}</error>}
       </form>
     </div>
   )
