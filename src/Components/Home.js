@@ -13,6 +13,7 @@ const Home = () => {
         <NavBar />
         <section>
             <div>Home</div>
+            <h3>Welcome</h3>
         </section>
         <footer className="footerBar">
           {token === 'null'  
