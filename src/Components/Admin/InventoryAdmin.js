@@ -31,7 +31,9 @@ const InventoryAdmin = () => {
           className="inputField" />
 
           <TextField 
-          id="standard-basic" 
+          id="standard-basic"
+          type="file"
+          accept="image/*"
           label="Images" 
           variant="standard"
           className="inputField" />
