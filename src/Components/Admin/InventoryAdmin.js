@@ -2,9 +2,15 @@ import React from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import Axios from 'axios';
 import '../../Styles/InventoryAdmin.scss'
 
 const InventoryAdmin = () => {
+
+  const uploadImage = (files) => {
+    console.log(files)
+  }
+
   return (
     <>
       <div>InventoryAdmin</div>
@@ -36,7 +42,10 @@ const InventoryAdmin = () => {
           accept="image/*"
           label="Images" 
           variant="standard"
-          className="inputField" />
+          className="inputField"
+          onChange={(event) => {
+            uploadImage(event.target.files)
+          }} />
 
           <Button>Add Inventory</Button>
         </form>
