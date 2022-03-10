@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
@@ -6,9 +6,22 @@ import Axios from 'axios';
 import '../../Styles/InventoryAdmin.scss'
 
 const InventoryAdmin = () => {
+  const [ fileInput, setFileInput] = useState('');
+  const [ selectedFile, setSelectedFile] = useState('');
+  const [ previewSource, setPreviewSource ] = useState();
 
-  const uploadImage = (files) => {
-    console.log(files)
+
+  const uploadImage = (e) => {
+    const file = e.target.files[0];
+    previewFile(file)
+  }
+
+  const previewFile = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setPreviewSource(reader.result)
+    }
   }
 
   return (
@@ -43,12 +56,14 @@ const InventoryAdmin = () => {
           label="Images" 
           variant="standard"
           className="inputField"
-          onChange={(event) => {
-            uploadImage(event.target.files)
-          }} />
+          value={fileInput}
+          onChange={uploadImage} />
 
           <Button>Add Inventory</Button>
         </form>
+        {previewSource && (
+          <img src={previewSource} style={{height: "250px"}} alt="Chosen files" />
+        )}
       </Box>
     </>
   )
