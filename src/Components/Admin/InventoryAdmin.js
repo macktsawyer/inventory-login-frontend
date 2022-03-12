@@ -24,11 +24,18 @@ const InventoryAdmin = () => {
     }
   }
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Post to Cloudinary
+    console.log(e.target.value)
+    // Post to MongoDB
+  }
+
   return (
     <>
       <div>InventoryAdmin</div>
       <Box className="newItemFormBox">
-        <form className="newItemForm">
+        <form onSubmit={handleSubmit} className="newItemForm">
           <TextField 
           id="standard-basic" 
           label="Name" 
@@ -59,7 +66,7 @@ const InventoryAdmin = () => {
           value={fileInput}
           onChange={uploadImage} />
 
-          <Button>Add Inventory</Button>
+          <Button type="submit">Add Inventory</Button>
         </form>
         {previewSource && (
           <img src={previewSource} style={{height: "250px"}} alt="Chosen files" />
