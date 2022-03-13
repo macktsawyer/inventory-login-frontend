@@ -13,7 +13,7 @@ const InventoryAdmin = () => {
 
   const uploadImage = (e) => {
     const file = e.target.files[0];
-    previewFile(file)
+    previewFile(file);
   }
 
   const previewFile = (file) => {
@@ -21,7 +21,7 @@ const InventoryAdmin = () => {
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       setPreviewSource(reader.result)
-    }
+    };
   }
 
   const handleSubmit = (e) => {
@@ -56,21 +56,21 @@ const InventoryAdmin = () => {
           variant="standard" 
           className="inputField" />
 
-          <TextField 
-          id="standard-basic"
+          <input 
           type="file"
+          multiple
           accept="image/*"
           label="Images" 
-          variant="standard"
           className="inputField"
+          style={{marginTop: "15px"}}
           value={fileInput}
           onChange={uploadImage} />
 
-          <Button type="submit">Add Inventory</Button>
+          <Button 
+          type="submit"
+          style={{marginTop: "15px"}}>Add Inventory</Button>
         </form>
-        {previewSource && (
-          <img src={previewSource} style={{height: "250px"}} alt="Chosen files" />
-        )}
+        {previewSource && <img src={previewSource} style={{height: "150px"}} alt="Chosen files" />}
       </Box>
     </>
   )
