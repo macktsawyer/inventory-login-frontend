@@ -13,7 +13,7 @@ const InventoryAdmin = () => {
   const uploadImage = async (base64EncodedImage) => {
     console.log(base64EncodedImage);
     try {
-      await fetch('/inv/newInventory', {
+      await fetch('http://localhost:3001/inv/newInventory', {
         method: 'POST',
         body: JSON.stringify({data: base64EncodedImage}),
         headers: {'Content-Type': 'application/json'}
