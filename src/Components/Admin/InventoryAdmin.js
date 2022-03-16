@@ -11,7 +11,6 @@ const InventoryAdmin = () => {
   const [ errorMessage, setErrorMessage ] = useState('');
 
   const uploadImage = async (base64EncodedImage) => {
-    console.log(base64EncodedImage);
     try {
       await fetch('http://localhost:3001/inv/newInventory', {
         method: 'POST',
