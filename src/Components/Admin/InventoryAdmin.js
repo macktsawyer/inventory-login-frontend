@@ -9,12 +9,20 @@ const InventoryAdmin = () => {
   const [ selectedFile, setSelectedFile] = useState('');
   const [ previewSource, setPreviewSource ] = useState();
   const [ errorMessage, setErrorMessage ] = useState('');
+  const [ itemName, setItemName ] = useState('');
+  const [ itemDesc, setItemDesc ] = useState('');
+  const [ itemPrice, setItemPrice ] = useState('');
 
   const uploadImage = async (base64EncodedImage) => {
     try {
       await fetch('http://localhost:3001/inv/newInventory', {
         method: 'POST',
-        body: JSON.stringify({data: base64EncodedImage}),
+        body: JSON.stringify({
+          image_data: base64EncodedImage,
+          item_name: itemName,
+          item_desc: itemDesc,
+          item_price: itemPrice,
+        }),
         headers: {'Content-Type': 'application/json'}
       })
     } catch (error) {
@@ -27,6 +35,21 @@ const InventoryAdmin = () => {
     previewFile(file);
     setSelectedFile(file);
     setFileInput(e.target.value);
+  }
+  
+  const handleFileNameChange = (e) => {
+    e.preventDefault();
+    setItemName(e.target.value);
+  }
+
+  const handleFileDescChange = (e) => {
+    e.preventDefault();
+    setItemDesc(e.target.value);
+  }
+
+  const handleFilePriceChange = (e) => {
+    e.preventDefault();
+    setItemPrice(e.target.value);
   }
 
   const previewFile = (file) => {
@@ -64,6 +87,9 @@ const InventoryAdmin = () => {
           id="standard-basic" 
           label="Name" 
           variant="standard"
+          required={true}
+          value={itemName}
+          onChange={handleFileNameChange}
           className="inputField" />
 
           <TextField
@@ -71,13 +97,19 @@ const InventoryAdmin = () => {
           label="Description"
           variant="standard"
           multiline
-          maxRows={6} 
+          maxRows={6}
+          required={true}
+          value={itemDesc}
+          onChange={handleFileDescChange}
           className="inputField" />
 
           <TextField 
           id="standard-basic" 
           label="Price" 
-          variant="standard" 
+          variant="standard"
+          required={true}
+          value={itemPrice}
+          onChange={handleFilePriceChange}
           className="inputField" />
 
           <input 
@@ -90,11 +122,16 @@ const InventoryAdmin = () => {
           value={fileInput}
           onChange={handleFileInputChange} />
 
+          <br />
+
+          {previewSource && <img src={previewSource} style={{height: "150px", marginTop:"15px"}} alt="Chosen files" />}
+
+          <br />
+
           <Button 
           type="submit"
           style={{marginTop: "15px"}}>Add Inventory</Button>
         </form>
-        {previewSource && <img src={previewSource} style={{height: "150px"}} alt="Chosen files" />}
         {errorMessage && <div>{errorMessage}</div>}
       </Box>
     </>

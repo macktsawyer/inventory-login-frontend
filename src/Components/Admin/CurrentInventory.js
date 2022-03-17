@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Paper from '@mui/material/Paper';
+import Card from '@mui/material/Card';
+import Grid from '@mui/material/Grid';
 import { Image } from 'cloudinary-react';
 import '../../Styles/CurrentInventory.scss';
 
@@ -24,17 +26,23 @@ const CurrentInventory = () => {
     <div className="currentInventoryMain">
         <Paper elevation={5} className="inventoryShowcase">
             <strong>Inventory</strong>
-            {imageIDs && imageIDs.map((imageId, index) => {
-              return (
-              <Image 
-              key={index}
-              cloudName="disgd9pk6"
-              publicId={imageId} 
-              width="150"
-              crop="scale"
-              />
-                )
-            })}
+            <Grid container spacing={3}>
+              {imageIDs && imageIDs.map((imageId, index) => {
+                return (
+                  <Grid item key={`Grid ${index}`}>
+                    <Card key={`Card ${index}`}>
+                      <Image 
+                      key={index}
+                      cloudName="disgd9pk6"
+                      publicId={imageId} 
+                      height="150"
+                      crop="scale"
+                      />
+                    </Card>
+                  </Grid>
+                  )
+              })}
+            </Grid>
         </Paper>
     </div>
   )
