@@ -6,7 +6,14 @@ import { Image } from 'cloudinary-react';
 import '../../Styles/CurrentInventory.scss';
 
 const CurrentInventory = () => {
-  const [ imageIDs, setImageIDs] = useState();
+  const [ imageIDs, setImageIDs ] = useState();
+  const [ itemInfo, setItemInfo ] = useState({
+    id: '',
+    item: '',
+    desc: '',
+    price: '',
+    image: ''
+  });
 
   const loadImages = async () => {
     try {
