@@ -12,7 +12,7 @@ const CurrentInventory = () => {
     try {
       const res = await fetch('http://localhost:3001/inv/getInventory');
       const data = await res.json();
-      setImageIDs(data);
+      setImageIDs(data.publicIds);
     } catch (error) {
       console.error(error)
     }
@@ -27,14 +27,13 @@ const CurrentInventory = () => {
         <Paper elevation={5} className="inventoryShowcase">
             <strong>Inventory</strong>
             <Grid container spacing={3}>
-              {imageIDs && imageIDs.map((imageId, index) => {
+              {imageIDs && imageIDs.map((i) => {
                 return (
-                  <Grid item key={`Grid ${index}`}>
-                    <Card key={`Card ${index}`}>
+                  <Grid item >
+                    <Card >
                       <Image 
-                      key={index}
                       cloudName="disgd9pk6"
-                      publicId={imageId} 
+                      publicId={i} 
                       height="150"
                       crop="scale"
                       />
@@ -49,3 +48,21 @@ const CurrentInventory = () => {
 }
 
 export default CurrentInventory
+
+  // const [ infoAddress, setInfoAddress ] = useState();
+
+  // const getInfomation = () => {
+  //   try {
+  //     const res = await fetch(`http://localhost:3001/inv/getInventory/${infoAddress}`)
+  //   } catch (error) {
+  //     console.error(error)
+  //   }
+  // }
+
+  // const sliceInfo = () => {
+  //   for (let i of imageIDs) {
+  //     setInfoAddress(i.slice('/')[1]);
+  //   }
+  // }
+
+    // sliceInfo();
