@@ -55,21 +55,3 @@ const CurrentInventory = () => {
 }
 
 export default CurrentInventory
-
-  // const [ infoAddress, setInfoAddress ] = useState();
-
-  // const getInfomation = () => {
-  //   try {
-  //     const res = await fetch(`http://localhost:3001/inv/getInventory/${infoAddress}`)
-  //   } catch (error) {
-  //     console.error(error)
-  //   }
-  // }
-
-  // const sliceInfo = () => {
-  //   for (let i of imageIDs) {
-  //     setInfoAddress(i.slice('/')[1]);
-  //   }
-  // }
-
-    // sliceInfo();
