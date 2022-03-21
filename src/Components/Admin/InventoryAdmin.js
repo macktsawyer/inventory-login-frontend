@@ -72,10 +72,6 @@ const InventoryAdmin = () => {
       console.error('Something went wrong with file submission');
       setErrorMessage('Error With Submit Feature');
     }
-
-    // Post to Cloudinary
-    console.log(e.target.value)
-    // Post to MongoDB
   }
 
   return (

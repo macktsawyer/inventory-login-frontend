@@ -20,6 +20,14 @@ const CurrentInventory = () => {
       const res = await fetch('http://localhost:3001/inv/getInventory');
       const data = await res.json();
       setImageIDs(data.publicIds);
+      setItemInfo({
+        ...itemInfo, 
+        id: data.information.id,
+        item: data.information.item,
+        desc: data.information.description,
+        price: data.information.price,
+        image: data.information.image
+      })
     } catch (error) {
       console.error(error)
     }
