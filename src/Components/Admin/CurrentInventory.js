@@ -6,52 +6,45 @@ import { Image } from 'cloudinary-react';
 import '../../Styles/CurrentInventory.scss';
 
 const CurrentInventory = () => {
-  const [ imageIDs, setImageIDs ] = useState();
-  const [ itemInfo, setItemInfo ] = useState({
-    id: '',
-    item: '',
-    desc: '',
-    price: '',
-    image: ''
-  });
+  const [ itemInfo, setItemInfo ] = useState([]);
 
-  const loadImages = async () => {
+  const loadInfo = async () => {
     try {
       const res = await fetch('http://localhost:3001/inv/getInventory');
       const data = await res.json();
-      setImageIDs(data.publicIds);
-      setItemInfo({
-        ...itemInfo, 
-        id: data.information.id,
-        item: data.information.item,
-        desc: data.information.description,
-        price: data.information.price,
-        image: data.information.image
-      })
+      setItemInfo(data.information)
     } catch (error) {
       console.error(error)
     }
   }
 
   useEffect(() => {
-    loadImages();
+    loadInfo();
+    //eslint-disable-next-line
   },[])
+
+  console.log(itemInfo)
 
   return (
     <div className="currentInventoryMain">
         <Paper elevation={5} className="inventoryShowcase">
             <strong>Inventory</strong>
             <Grid container spacing={3}>
-              {imageIDs && imageIDs.map((i) => {
+              {itemInfo && itemInfo.map((i) => {
                 return (
                   <Grid item >
                     <Card >
                       <Image 
                       cloudName="disgd9pk6"
-                      publicId={i} 
+                      publicId={i.publicId} 
                       height="150"
                       crop="scale"
                       />
+                      <ul>
+                        <li>{i.item}</li>
+                        <li>{i.description}</li>
+                        <li>{i.price}</li>
+                      </ul>
                     </Card>
                   </Grid>
                   )
