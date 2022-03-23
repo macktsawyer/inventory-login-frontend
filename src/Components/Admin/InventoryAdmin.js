@@ -12,9 +12,11 @@ const InventoryAdmin = () => {
   const [ itemName, setItemName ] = useState('');
   const [ itemDesc, setItemDesc ] = useState('');
   const [ itemPrice, setItemPrice ] = useState('');
+  const [ loading, setLoading ] = useState(false);
 
   const uploadImage = async (base64EncodedImage) => {
     try {
+      setLoading(true);
       await fetch('http://localhost:3001/inv/newInventory', {
         method: 'POST',
         body: JSON.stringify({
@@ -28,6 +30,7 @@ const InventoryAdmin = () => {
     } catch (error) {
       console.log(error)
     }
+    setLoading(false);
   }
 
   const handleFileInputChange = (e) => {
@@ -60,8 +63,7 @@ const InventoryAdmin = () => {
     };
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     if(!selectedFile) return;
     const reader = new FileReader();
     reader.readAsDataURL(selectedFile);
@@ -75,7 +77,7 @@ const InventoryAdmin = () => {
   }
 
   return (
-    <>
+    <div className="inventoryMaster">
       <div>InventoryAdmin</div>
       <Box className="newItemFormBox">
         <form onSubmit={handleSubmit} className="newItemForm">
@@ -130,7 +132,7 @@ const InventoryAdmin = () => {
         </form>
         {errorMessage && <div>{errorMessage}</div>}
       </Box>
-    </>
+    </div>
   )
 }
 

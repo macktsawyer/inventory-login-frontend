@@ -18,9 +18,16 @@ const CurrentInventory = () => {
     }
   }
 
+  const truncateDesc = (text) => {
+    if (text.length > 45) {
+      return text.substring(0, 44) + '...';
+    } else {
+      return text;
+    }
+  }
+
   useEffect(() => {
     loadInfo();
-    //eslint-disable-next-line
   },[])
 
   console.log(itemInfo)
@@ -33,17 +40,20 @@ const CurrentInventory = () => {
               {itemInfo && itemInfo.map((i) => {
                 return (
                   <Grid item >
-                    <Card >
+                    <Card 
+                    className="itemCard"
+                    elevation={5}>
                       <Image 
                       cloudName="disgd9pk6"
+                      className="itemImage"
                       publicId={i.publicId} 
                       height="150"
                       crop="scale"
                       />
-                      <ul>
-                        <li>{i.item}</li>
-                        <li>{i.description}</li>
-                        <li>{i.price}</li>
+                      <ul className="itemList">
+                        <li><strong>{i.item}</strong></li>
+                        <li>{truncateDesc(i.description)}</li>
+                        <li><strong>{i.price}</strong></li>
                       </ul>
                     </Card>
                   </Grid>

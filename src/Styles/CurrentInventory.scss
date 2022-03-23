@@ -9,5 +9,17 @@
         height: 90%;
         width: 90%;
         align-self: center;
+        .itemCard{
+            width: 15vw;
+            height: 30vh;
+            margin: 20px;
+            .itemImage{
+                margin-top: 2vh;
+            }
+            .itemList {
+                list-style-type: none;
+                margin-right: 25px;
+            }
+        }
     }
 }
