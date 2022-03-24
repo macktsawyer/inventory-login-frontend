@@ -9,12 +9,15 @@
         height: 90%;
         width: 90%;
         align-self: center;
+        overflow: scroll;
+        overflow-x: hidden;
         .itemCard{
             width: 15vw;
             height: 30vh;
             margin: 20px;
             .itemImage{
                 margin-top: 2vh;
+                width: 8vw
             }
             .itemList {
                 list-style-type: none;

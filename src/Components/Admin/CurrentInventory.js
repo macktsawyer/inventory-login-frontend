@@ -10,7 +10,12 @@ const CurrentInventory = () => {
 
   const loadInfo = async () => {
     try {
-      const res = await fetch('http://localhost:3001/inv/getInventory');
+      const res = await fetch('http://localhost:3001/inv/getInventory', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
       const data = await res.json();
       setItemInfo(data.information)
     } catch (error) {
@@ -36,7 +41,7 @@ const CurrentInventory = () => {
     <div className="currentInventoryMain">
         <Paper elevation={5} className="inventoryShowcase">
             <strong>Inventory</strong>
-            <Grid container spacing={3}>
+            <Grid container spacing={2}>
               {itemInfo && itemInfo.map((i) => {
                 return (
                   <Grid item >
@@ -47,7 +52,6 @@ const CurrentInventory = () => {
                       cloudName="disgd9pk6"
                       className="itemImage"
                       publicId={i.publicId} 
-                      height="150"
                       crop="scale"
                       />
                       <ul className="itemList">

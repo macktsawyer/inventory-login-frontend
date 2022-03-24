@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import CircularProgress from '@mui/material/CircularProgress';
 import '../../Styles/InventoryAdmin.scss'
 
 const InventoryAdmin = () => {
@@ -119,6 +120,8 @@ const InventoryAdmin = () => {
           style={{marginTop: "15px"}}
           value={fileInput}
           onChange={handleFileInputChange} />
+
+          {loading === true && <CircularProgress />}
 
           <br />
 
