@@ -3,6 +3,7 @@ import Paper from '@mui/material/Paper';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
 import { Image } from 'cloudinary-react';
+import CircularProgress from '@mui/material/CircularProgress';
 import '../../Styles/CurrentInventory.scss';
 
 const CurrentInventory = () => {
@@ -48,12 +49,15 @@ const CurrentInventory = () => {
                     <Card 
                     className="itemCard"
                     elevation={5}>
-                      <Image 
+                      {i.publicId ? <Image 
                       cloudName="disgd9pk6"
                       className="itemImage"
                       publicId={i.publicId} 
                       crop="scale"
-                      />
+                      /> 
+                      : 
+                      <CircularProgress />
+                      }
                       <ul className="itemList">
                         <li><strong>{i.item}</strong></li>
                         <li>{truncateDesc(i.description)}</li>
