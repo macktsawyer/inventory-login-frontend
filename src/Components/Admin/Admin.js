@@ -14,6 +14,8 @@ const Admin = () => {
       <CurrentInventory />
       <footer className="footerBar">
           <Link to='/Logout'><Button variant="text"><strong>Logout</strong></Button></Link>
+          <strong style={{color: "blue"}}>•</strong>
+          <Link to='/PasswordChange'><Button><strong>Change Password</strong></Button></Link>
       </footer>
     </>
   )

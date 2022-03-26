@@ -7,6 +7,7 @@ import Home from './Components/Home';
 import Inventory from './Components/Inventory';
 import About from './Components/About';
 import Admin from './Components/Admin/Admin';
+import PasswordChange from './Components/Admin/PasswordChange';
 import { Routes, Route } from 'react-router-dom';
 import { AuthContext } from './Services/authContext';
 import ProtectedRoute from './Services/ProtectedRoutes';
@@ -32,6 +33,7 @@ function App() {
           <Route exact element={<ProtectedRoute />} >
             <Route path='/Admin' element={<Admin />} />
             <Route path='/Logout' element={<Logout />} />
+            <Route path='/PasswordChange' element={<PasswordChange />} />
           </Route>
         </Routes>
       </AuthContext.Provider>
