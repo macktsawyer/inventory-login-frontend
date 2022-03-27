@@ -14,7 +14,7 @@ import ProtectedRoute from './Services/ProtectedRoutes';
 
 function App() {
 
-  const [authTokens, setAuthTokens] = useState();
+  const [ authTokens, setAuthTokens ] = useState();
 
   const setTokens = (data) => {
       localStorage.setItem('tokens', JSON.stringify(data));
