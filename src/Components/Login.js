@@ -15,7 +15,7 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isError, setIsError] = useState(false);
-  const { setAuthTokens } = useAuth();
+  const { setAuthTokens, setUserValue } = useAuth();
   let Navigate = useNavigate();
 
   const handleClickShowPassword = () => {
@@ -43,6 +43,7 @@ const Login = () => {
 
     if (data) {
       setAuthTokens(data.token);
+      setUserValue(username);
       setIsLoggedIn(true);
       alert('Log in successful')
       Navigate('/Admin')

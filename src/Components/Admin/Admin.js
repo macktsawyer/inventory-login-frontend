@@ -5,8 +5,9 @@ import '../../Styles/Admin.scss';
 import InventoryAdmin from './InventoryAdmin';
 import CurrentInventory from './CurrentInventory';
 
-const Admin = () => {
 
+const Admin = () => {
+  
   return (
     <>
       <Link className="homeButton" to='/'><Button variant="text"><strong>Home</strong></Button></Link>

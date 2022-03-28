@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
+import { useAuth } from '../../Services/authContext';
 import '../../Styles/InventoryAdmin.scss'
 
 const InventoryAdmin = () => {
@@ -14,6 +15,7 @@ const InventoryAdmin = () => {
   const [ itemDesc, setItemDesc ] = useState('');
   const [ itemPrice, setItemPrice ] = useState('');
   const [ loading, setLoading ] = useState(false);
+  const { userValue } = useAuth();
 
   const uploadImage = async (base64EncodedImage) => {
     try {
@@ -79,7 +81,7 @@ const InventoryAdmin = () => {
 
   return (
     <div className="inventoryMaster">
-      <div>InventoryAdmin</div>
+      <div>{userValue}'s Inventory Admin</div>
       <Box className="newItemFormBox">
         <form onSubmit={handleSubmit} className="newItemForm">
           <TextField 

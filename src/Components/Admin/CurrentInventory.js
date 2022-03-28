@@ -36,8 +36,6 @@ const CurrentInventory = () => {
     loadInfo();
   },[])
 
-  console.log(itemInfo)
-
   return (
     <div className="currentInventoryMain">
         <Paper elevation={5} className="inventoryShowcase">

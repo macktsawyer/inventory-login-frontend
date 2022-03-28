@@ -15,11 +15,15 @@ const PasswordChange = () => {
     const [ newPasswordConf, setNewPasswordConf ] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [isError, setIsError] = useState(false);
+    const { authTokens, userValue } = useAuth();
     let Navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Success')
+        if (userValue) {
+            console.log(userValue)
+            console.log('Success')
+        }
     }
 
     const handleClickShowPassword = () => {
@@ -48,6 +52,7 @@ const PasswordChange = () => {
   return (
     <div className="fullWindow">
       <form onSubmit={handleSubmit} className="changePasswordBox">
+        <h4>Hello {userValue}! Looking to change your password?</h4>
         <div className="inputField">
           <Input placeholder="Current Password" 
           onChange={handleCurrentChange}

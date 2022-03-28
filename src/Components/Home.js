@@ -7,7 +7,7 @@ import '../Styles/Home.scss';
 const Home = () => {
 
   let token = localStorage.getItem('tokens')
-  console.log(token)
+
   return (
     <>
         <NavBar />

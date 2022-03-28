@@ -6,12 +6,13 @@ import { useAuth } from '../Services/authContext';
 import '../Styles/Logout.scss';
 
 const Logout = () => {
-  const { setAuthTokens } = useAuth();
+  const { setAuthTokens, setUserValue, userValue } = useAuth();
   let Navigate = useNavigate();
 
   const handleLogout = (e) => {
     e.preventDefault();
     setAuthTokens(null);
+    setUserValue('');
     alert('Logout successful')
     Navigate('/');
   };
@@ -20,7 +21,7 @@ const Logout = () => {
     <div className="fullWindow">
         <Paper className="logoutWindow" elevation={5}>
             <div className="contentDiv">
-                <h4>Are you sure you want to log out?</h4>
+                <h4>Are you sure you want to log out {userValue}?</h4>
                 <Button onClick={handleLogout}>Logout</Button>
                 <Link className="goBack" to='/'><Button>Go Back</Button></Link>
             </div>

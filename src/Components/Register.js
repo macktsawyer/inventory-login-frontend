@@ -18,7 +18,7 @@ const Register = () => {
     const [isRegistered, setRegistered] = useState(false);
     const [isError, setIsError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
-    const { setAuthTokens } = useAuth();
+    const { setAuthTokens, setUserValue } = useAuth();
     let Navigate = useNavigate();
 
     const handleClickShowPassword = () => {
@@ -53,6 +53,7 @@ const Register = () => {
           
               if (data) {
                 setAuthTokens(data.token);
+                setUserValue(username);
                 setRegistered(true);
                 setIsError(false);
                 alert('Registration successful')

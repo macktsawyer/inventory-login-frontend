@@ -13,7 +13,7 @@ import { AuthContext } from './Services/authContext';
 import ProtectedRoute from './Services/ProtectedRoutes';
 
 function App() {
-
+  const [ userValue, setUserValue ] = useState();
   const [ authTokens, setAuthTokens ] = useState();
 
   const setTokens = (data) => {
@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div className="App">
-      <AuthContext.Provider value={{authTokens, setAuthTokens: setTokens}}>
+      <AuthContext.Provider value={{authTokens, setAuthTokens: setTokens, userValue, setUserValue}}>
         <Routes>
           <Route path='/Login' element={<Login />} />
           <Route path='/Register' element={<Register />} />
