@@ -43,8 +43,8 @@ const Login = () => {
 
     if (data) {
       setAuthTokens(data.token);
-      setUserValue(username);
       setIsLoggedIn(true);
+      setUserValue(username);
       alert('Log in successful')
       Navigate('/Admin')
     } else {

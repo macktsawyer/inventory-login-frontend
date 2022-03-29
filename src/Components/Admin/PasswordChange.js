@@ -15,14 +15,24 @@ const PasswordChange = () => {
     const [ newPasswordConf, setNewPasswordConf ] = useState('');
     const [showPassword, setShowPassword] = useState(false);
     const [isError, setIsError] = useState(false);
-    const { authTokens, userValue } = useAuth();
+    const { userValue } = useAuth();
     let Navigate = useNavigate();
+    let user = localStorage.getItem('user') === 'null' ? false : true;
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (userValue) {
-            console.log(userValue)
-            console.log('Success')
+        if (user) {
+            if (newPassword === newPasswordConf) {
+                if (newPassword !== currentPassword) {
+                    console.log('Success')
+                } else (
+                    setIsError('Your password is not unique enough')
+                )
+            } else {
+                setIsError('Password and password confirmation do not match');
+            }
+        } else {
+            Navigate('/');
         }
     }
 
@@ -94,9 +104,9 @@ const PasswordChange = () => {
         </div>
         <Button type="submit" onSubmit={handleSubmit}>Submit</Button>
         <strong style={{color: "blue"}}>•</strong>
-        <Link className="goBack" to='/'><Button>Go Back</Button></Link>
+        <Link className="goBack" to='/Admin'><Button>Go Back</Button></Link>
         <br/>
-        { isError && <error>The current password was incorrect or new passwords provided don't match</error>}
+        { isError && <error>{isError}</error>}
       </form>
     </div>
   )

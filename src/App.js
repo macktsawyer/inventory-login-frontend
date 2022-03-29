@@ -21,9 +21,14 @@ function App() {
       setAuthTokens(data);
   }
 
+  const setUser = (username) => {
+    localStorage.setItem('user', username);
+    setUserValue(username);
+  }
+
   return (
     <div className="App">
-      <AuthContext.Provider value={{authTokens, setAuthTokens: setTokens, userValue, setUserValue}}>
+      <AuthContext.Provider value={{authTokens, setAuthTokens: setTokens, userValue, setUserValue: setUser}}>
         <Routes>
           <Route path='/Login' element={<Login />} />
           <Route path='/Register' element={<Register />} />
