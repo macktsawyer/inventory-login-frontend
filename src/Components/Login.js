@@ -40,17 +40,17 @@ const Login = () => {
       }),
     })
     const data = await response.json()
-
-    if (data) {
+    if (data !== 400) {
       setAuthTokens(data.token);
       setIsLoggedIn(true);
       setUserValue(username);
       alert('Log in successful')
       Navigate('/Admin')
     } else {
-      setIsError(true)
+      setIsError(true);
+      setPassword('');
+      alert('Password or username were incorrect');
     }
-
   }
 
   if (isLoggedIn) {
@@ -81,12 +81,12 @@ const Login = () => {
         <div className="inputField">
           <Input placeholder="Password" 
           onChange={handlePassword}
-          onMouseDown={handleMouseDownPassword} 
           fullWidth label="Password"
+          value={password}
           type={showPassword ? "text" : "password"}
           endAdornment={
               <InputAdornment position="end">
-                  <IconButton onClick={handleClickShowPassword}>
+                  <IconButton onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword} >
                     {showPassword ? <VisibilityOff /> : <Visibility />}
                   </IconButton>
               </InputAdornment>

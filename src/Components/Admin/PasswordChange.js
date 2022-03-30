@@ -6,25 +6,45 @@ import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAuth } from '../../Services/authContext';
 import '../../Styles/PasswordChange.scss';
 
 const PasswordChange = () => {
     const [ currentPassword, setCurrentPassword ] = useState('');
     const [ newPassword, setNewPassword ] = useState('');
     const [ newPasswordConf, setNewPasswordConf ] = useState('');
-    const [showPassword, setShowPassword] = useState(false);
-    const [isError, setIsError] = useState(false);
-    const { userValue } = useAuth();
+    const [ showPassword, setShowPassword ] = useState(false);
+    const [ isError, setIsError ] = useState(false);
     let Navigate = useNavigate();
     let user = localStorage.getItem('user') === 'null' ? false : true;
+    let userName = localStorage.getItem('user');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
+        // Ensure the person is an auth user
         if (user) {
+            // Ensure the new password is confirmed
             if (newPassword === newPasswordConf) {
+                // Ensure new password isn't same as old password
                 if (newPassword !== currentPassword) {
-                    console.log('Success')
+                    console.log(newPassword, currentPassword, userName)
+                    fetch('http://localhost:3001/user/changePassword', {
+                        method: 'POST',
+                        headers: {
+                          'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            username: userName,
+                            oldPassword: currentPassword,
+                            newPassword: newPassword
+                        }),
+                      }).then(() => {
+                          console.log('Sucess')
+                          alert('Password changed successfully')
+                          Navigate('/Admin')
+                      }).catch((err) => {
+                          // Catch if 'old password' isn't actually the old password
+                          console.error(err)
+                      })
                 } else (
                     setIsError('Your password is not unique enough')
                 )
@@ -62,12 +82,13 @@ const PasswordChange = () => {
   return (
     <div className="fullWindow">
       <form onSubmit={handleSubmit} className="changePasswordBox">
-        <h4>Hello {userValue}! Looking to change your password?</h4>
+        <h4>Hello {userName}! Looking to change your password?</h4>
         <div className="inputField">
           <Input placeholder="Current Password" 
           onChange={handleCurrentChange}
           fullWidth label="Password"
           type={showPassword ? "text" : "password"}
+          required
           endAdornment={
               <InputAdornment position="end">
                   <IconButton onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword} >
@@ -81,6 +102,7 @@ const PasswordChange = () => {
           onChange={handleNewChange}
           fullWidth label="Password"
           type={showPassword ? "text" : "password"}
+          required
           endAdornment={
               <InputAdornment position="end">
                   <IconButton onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>
@@ -94,6 +116,7 @@ const PasswordChange = () => {
           onChange={handleNewConfChange}
           fullWidth label="Password"
           type={showPassword ? "text" : "password"}
+          required
           endAdornment={
               <InputAdornment position="end">
                   <IconButton onClick={handleClickShowPassword} onMouseDown={handleMouseDownPassword}>

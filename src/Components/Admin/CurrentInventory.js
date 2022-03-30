@@ -4,6 +4,8 @@ import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
 import { Image } from 'cloudinary-react';
 import CircularProgress from '@mui/material/CircularProgress';
+import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
+import EditIcon from '@mui/icons-material/Edit';
 import '../../Styles/CurrentInventory.scss';
 
 const CurrentInventory = () => {
@@ -32,6 +34,16 @@ const CurrentInventory = () => {
     }
   }
 
+  const handleEdit = (id, e) => {
+    e.preventDefault();
+    console.log(`Editing inventory ${id}`)
+  }
+
+  const handleDelete = (id, e) => {
+    e.preventDefault();
+    console.log(`Deleted inventory item ${id}`)
+  }
+
   useEffect(() => {
     loadInfo();
   },[])
@@ -47,6 +59,22 @@ const CurrentInventory = () => {
                     <Card 
                     className="itemCard"
                     elevation={5}>
+                      <div className="cardButtons">
+                        <div className="editIcon">
+                          <button
+                          className="editButton" 
+                          onClick={(e) => {
+                            handleEdit(i._id, e)
+                          }} ><EditIcon /></button>
+                        </div>
+                        <div className="deleteIcon">
+                          <button 
+                          className="deleteButton"
+                          onClick={(e) => {
+                            handleDelete(i._id, e)
+                          }}><HighlightOffOutlinedIcon sx={{color: "red"}} /></button>
+                        </div>
+                      </div>
                       {i.publicId ? <Image 
                       cloudName="disgd9pk6"
                       className="itemImage"
