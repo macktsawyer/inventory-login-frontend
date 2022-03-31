@@ -7,6 +7,10 @@ import CircularProgress from '@mui/material/CircularProgress';
 import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
 import EditIcon from '@mui/icons-material/Edit';
 import '../../Styles/CurrentInventory.scss';
+let userName = localStorage.getItem('user');
+let token = localStorage.getItem('tokens');
+
+console.log(userName)
 
 const CurrentInventory = () => {
   const [ itemInfo, setItemInfo ] = useState([]);
@@ -39,9 +43,20 @@ const CurrentInventory = () => {
     console.log(`Editing inventory ${id}`)
   }
 
-  const handleDelete = (id, e) => {
+
+  const handleDelete = async (id, e) => {
     e.preventDefault();
     console.log(`Deleted inventory item ${id}`)
+
+    await fetch('http://localhost:3001/inv/deleteInventory', {
+        method: 'POST',
+        body: JSON.stringify({
+          item_id: id,
+          userName: userName,
+          password: token,
+        }),
+        headers: {'Content-Type': 'application/json'}
+      })
   }
 
   useEffect(() => {
@@ -71,7 +86,7 @@ const CurrentInventory = () => {
                           <button 
                           className="deleteButton"
                           onClick={(e) => {
-                            handleDelete(i._id, e)
+                            handleDelete(i.id, e)
                           }}><HighlightOffOutlinedIcon sx={{color: "red"}} /></button>
                         </div>
                       </div>
