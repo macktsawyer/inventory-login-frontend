@@ -7,6 +7,12 @@ import CurrentInventory from './CurrentInventory';
 
 
 const Admin = () => {
+
+  const reloadInfo = () => {
+    // Submission causes currentInventory to reload
+    // Will need to use callback to inventoryAdmin and CurrentInventory
+    // Or change layout so currentInventory is inside inventoryAdmin
+  }
   
   return (
     <>

@@ -12,11 +12,13 @@ let token = localStorage.getItem('tokens');
 
 console.log(userName)
 
-const CurrentInventory = () => {
+const CurrentInventory = (props) => {
   const [ itemInfo, setItemInfo ] = useState([]);
+  const [ loading, setLoading ] = useState(false);
 
   const loadInfo = async () => {
     try {
+      setLoading(true)
       const res = await fetch('http://localhost:3001/inv/getInventory', {
         method: 'GET',
         headers: {
@@ -24,10 +26,11 @@ const CurrentInventory = () => {
         }
       });
       const data = await res.json();
-      setItemInfo(data.information)
+      setItemInfo(data.information);
     } catch (error) {
       console.error(error)
     }
+    setLoading(false);
   }
 
   const truncateDesc = (text) => {
@@ -66,6 +69,8 @@ const CurrentInventory = () => {
   return (
     <div className="currentInventoryMain">
         <Paper elevation={5} className="inventoryShowcase">
+            {loading && <CircularProgress />}
+            <br />
             <strong>Inventory</strong>
             <Grid container spacing={2}>
               {itemInfo && itemInfo.map((i) => {
