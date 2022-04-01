@@ -3,6 +3,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
+import CurrentInventory from './CurrentInventory';
 import '../../Styles/InventoryAdmin.scss'
 
 const InventoryAdmin = () => {
@@ -137,6 +138,7 @@ const InventoryAdmin = () => {
         </form>
         {errorMessage && <div>{errorMessage}</div>}
       </Box>
+      <CurrentInventory />
     </div>
   )
 }
