@@ -10,9 +10,7 @@ import '../../Styles/CurrentInventory.scss';
 let userName = localStorage.getItem('user');
 let token = localStorage.getItem('tokens');
 
-console.log(userName)
-
-const CurrentInventory = (props) => {
+const CurrentInventory = () => {
   const [ itemInfo, setItemInfo ] = useState([]);
   const [ loading, setLoading ] = useState(false);
 
@@ -49,6 +47,7 @@ const CurrentInventory = (props) => {
 
   const handleDelete = async (id, e) => {
     e.preventDefault();
+    setLoading(true);
     console.log(`Deleted inventory item ${id}`)
 
     await fetch('http://localhost:3001/inv/deleteInventory', {
@@ -60,6 +59,7 @@ const CurrentInventory = (props) => {
         }),
         headers: {'Content-Type': 'application/json'}
       })
+    setLoading(false);
   }
 
   useEffect(() => {

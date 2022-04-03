@@ -138,7 +138,7 @@ const InventoryAdmin = () => {
         </form>
         {errorMessage && <div>{errorMessage}</div>}
       </Box>
-      <CurrentInventory />
+      {!loading && <CurrentInventory />}
     </div>
   )
 }
