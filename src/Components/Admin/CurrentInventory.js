@@ -14,23 +14,6 @@ const CurrentInventory = () => {
   const [ itemInfo, setItemInfo ] = useState([]);
   const [ loading, setLoading ] = useState(false);
 
-  const loadInfo = async () => {
-    try {
-      setLoading(true)
-      const res = await fetch('http://localhost:3001/inv/getInventory', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      });
-      const data = await res.json();
-      setItemInfo(data.information);
-    } catch (error) {
-      console.error(error)
-    }
-    setLoading(false);
-  }
-
   const truncateDesc = (text) => {
     if (text.length > 45) {
       return text.substring(0, 44) + '...';
@@ -47,10 +30,9 @@ const CurrentInventory = () => {
 
   const handleDelete = async (id, e) => {
     e.preventDefault();
-    setLoading(true);
-    console.log(`Deleted inventory item ${id}`)
-
-    await fetch('http://localhost:3001/inv/deleteInventory', {
+    try {
+      console.log(`Deleted inventory item ${id}`)
+      await fetch('http://localhost:3001/inv/deleteInventory', {
         method: 'POST',
         body: JSON.stringify({
           item_id: id,
@@ -58,11 +40,29 @@ const CurrentInventory = () => {
           password: token,
         }),
         headers: {'Content-Type': 'application/json'}
-      })
-    setLoading(false);
+      });
+    } catch (error) {
+      console.error(error)
+    }
   }
 
   useEffect(() => {
+    const loadInfo = async () => {
+      try {
+        setLoading(true)
+        const res = await fetch('http://localhost:3001/inv/getInventory', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        const data = await res.json();
+        setItemInfo(data.information);
+      } catch (error) {
+        console.error(error)
+      }
+      setLoading(false);
+    }
     loadInfo();
   },[])
 
@@ -73,7 +73,7 @@ const CurrentInventory = () => {
             <br />
             <strong>Inventory</strong>
             <Grid container spacing={2}>
-              {itemInfo && itemInfo.map((i) => {
+              {itemInfo && !loading && itemInfo.map((i) => {
                 return (
                   <Grid item >
                     <Card 
