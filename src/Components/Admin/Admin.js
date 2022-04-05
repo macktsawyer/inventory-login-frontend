@@ -4,15 +4,7 @@ import Button from '@mui/material/Button';
 import '../../Styles/Admin.scss';
 import InventoryAdmin from './InventoryAdmin';
 
-
-
 const Admin = () => {
-
-  const reloadInfo = () => {
-    // Submission causes currentInventory to reload
-    // Will need to use callback to inventoryAdmin and CurrentInventory
-    // Or change layout so currentInventory is inside inventoryAdmin
-  }
   
   return (
     <>
