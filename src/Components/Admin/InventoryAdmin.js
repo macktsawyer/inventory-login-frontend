@@ -11,8 +11,6 @@ import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
 import EditIcon from '@mui/icons-material/Edit';
 import axios from 'axios';
 import '../../Styles/InventoryAdmin.scss'
-let userName = localStorage.getItem('user');
-let token = localStorage.getItem('tokens');
 
 
 const InventoryAdmin = () => {
@@ -94,14 +92,13 @@ const InventoryAdmin = () => {
     console.log(`Editing inventory ${id}`)
   }
 
-  const handleDelete = async (id, e) => {
+  const handleDelete = async (_id, id, e) => {
     e.preventDefault();
     setLoading(true);
     console.log(`Deleted inventory item ${id}`)
     axios.post('http://localhost:3001/inv/deleteInventory', {
-        item_id: id,
-        userName: userName,
-        password: token,
+        item_id: _id,
+        itemID: id
       });
     setLoading(false);
   }
@@ -198,7 +195,7 @@ const InventoryAdmin = () => {
                             <button 
                             className="deleteButton"
                             onClick={(e) => {
-                              handleDelete(i.id, e)
+                              handleDelete(i._id, i.id, e)
                             }}><HighlightOffOutlinedIcon sx={{color: "red"}} /></button>
                           </div>
                         </div>
