@@ -24,15 +24,21 @@ const InventoryAdmin = () => {
   const [ loading, setLoading ] = useState(false);
   const [ itemInfo, setItemInfo ] = useState([]);
   const user = localStorage.getItem('user');
+  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+  // Maybe create a temp state to hold latest upload item, default null (conditional render !null && (latestUpload)). State will empty upon refresh and item will show like normal
 
   const uploadImage = async (base64EncodedImage) => {
     setLoading(true);
-    axios.post('http://localhost:3001/inv/newInventory', {
-        image_data: base64EncodedImage,
-        item_name: itemName,
-        item_desc: itemDesc,
-        item_price: itemPrice,
-      })
+    const newItem = {
+      image_data: base64EncodedImage,
+      item_name: itemName,
+      item_desc: itemDesc,
+      item_price: itemPrice,
+    }
+    axios.post('http://localhost:3001/inv/newInventory', newItem).then(loadInfo()).catch(e => console.log(e));
+    await sleep(2000);
+    await loadInfo();
     setLoading(false);
   }
 
@@ -96,20 +102,27 @@ const InventoryAdmin = () => {
     e.preventDefault();
     setLoading(true);
     console.log(`Deleted inventory item ${id}`)
-    axios.post('http://localhost:3001/inv/deleteInventory', {
-        item_id: _id,
-        itemID: id
-      });
+    axios.delete(`http://localhost:3001/inv/deleteInventory/${_id}`);
+    
+    axios.post('http://localhost:3001/inv/deleteImage', {
+      itemID: id
+    });
+
+    loadInfo();
+    setLoading(false);
+  }
+
+  const loadInfo = async () => {
+    setLoading(true);
+    axios.get('http://localhost:3001/inv/getInventory').then((response) => {
+      setItemInfo(response.data.information);
+      console.log(response.data.information)
+    });
     setLoading(false);
   }
 
   useEffect(() => {
-    setLoading(true);
-    axios.get('http://localhost:3001/inv/getInventory').then((response) => {
-      setItemInfo(response.data.information)
-      console.log(response)
-    });
-    setLoading(false);
+    loadInfo();
   },[])
 
   return (
