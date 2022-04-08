@@ -23,10 +23,15 @@ const InventoryAdmin = () => {
   const [ itemPrice, setItemPrice ] = useState('');
   const [ loading, setLoading ] = useState(false);
   const [ itemInfo, setItemInfo ] = useState([]);
+  const [ recentFile, setRecentFile ] = useState({
+    recentName: '',
+    recentDesc: '',
+    recentPrice: ''
+  })
   const user = localStorage.getItem('user');
   const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
-  // Maybe create a temp state to hold latest upload item, default null (conditional render !null && (latestUpload)). State will empty upon refresh and item will show like normal
+  // Maybe create a temp state(recentFiles) to hold latest upload item, default null (conditional render !null && (latestUpload)). State will empty upon refresh and item will show like normal from api call
 
   const uploadImage = async (base64EncodedImage) => {
     setLoading(true);
