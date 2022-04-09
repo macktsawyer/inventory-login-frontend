@@ -42,6 +42,12 @@ const InventoryAdmin = () => {
       item_price: itemPrice,
     }
     axios.post('http://localhost:3001/inv/newInventory', newItem).then(loadInfo()).catch(e => console.log(e));
+    setRecentFile({
+      recentName: itemName,
+      recentDesc: itemDesc,
+      recentPrice: itemPrice
+    })
+    console.log(recentFile)
     await sleep(2000);
     await loadInfo();
     setLoading(false);
@@ -235,6 +241,16 @@ const InventoryAdmin = () => {
                     </Grid>
                     )
                 })}
+                {recentFile && 
+                <Card
+                className="itemCard"
+                elevation={5}>
+                    <ul className="itemList">
+                      <li><strong>{recentFile.itemName}</strong></li>
+                      <li>{recentFile.itemDesc}</li>
+                    <li><strong>{recentFile.itemPrice}</strong></li>
+                  </ul>
+                </Card>}
               </Grid>
           </Paper>
       </div>
