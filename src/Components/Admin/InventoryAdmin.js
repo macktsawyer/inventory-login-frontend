@@ -1,14 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import { Image } from 'cloudinary-react';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
-import Paper from '@mui/material/Paper';
-import Card from '@mui/material/Card';
-import Grid from '@mui/material/Grid';
-import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
-import EditIcon from '@mui/icons-material/Edit';
+import CurrentInventory from './CurrentInventory';
 import axios from 'axios';
 import '../../Styles/InventoryAdmin.scss'
 
@@ -23,13 +18,7 @@ const InventoryAdmin = () => {
   const [ itemPrice, setItemPrice ] = useState('');
   const [ loading, setLoading ] = useState(false);
   const [ itemInfo, setItemInfo ] = useState([]);
-  const [ recentFile, setRecentFile ] = useState({
-    recentName: '',
-    recentDesc: '',
-    recentPrice: ''
-  })
   const user = localStorage.getItem('user');
-  const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
   // Maybe create a temp state(recentFiles) to hold latest upload item, default null (conditional render !null && (latestUpload)). State will empty upon refresh and item will show like normal from api call
 
@@ -41,15 +30,12 @@ const InventoryAdmin = () => {
       item_desc: itemDesc,
       item_price: itemPrice,
     }
-    axios.post('http://localhost:3001/inv/newInventory', newItem).then(loadInfo()).catch(e => console.log(e));
-    setRecentFile({
-      recentName: itemName,
-      recentDesc: itemDesc,
-      recentPrice: itemPrice
-    })
-    console.log(recentFile)
-    await sleep(2000);
-    await loadInfo();
+    try {
+      await axios.post('http://localhost:3001/inv/newInventory', newItem).then(loadInfo()).catch(e => console.log(e));
+      loadInfo();
+    } catch (error) {
+      console.error(error)
+    }
     setLoading(false);
   }
 
@@ -96,17 +82,12 @@ const InventoryAdmin = () => {
     }
   }
 
-  const truncateDesc = (text) => {
-    if (text.length > 45) {
-      return text.substring(0, 44) + '...';
-    } else {
-      return text;
-    }
-  }
-
-  const handleEdit = (id, e) => {
-    e.preventDefault();
-    console.log(`Editing inventory ${id}`)
+  const loadInfo = async () => {
+    setLoading(true);
+    axios.get('http://localhost:3001/inv/getInventory').then((response) => {
+      setItemInfo(response.data.information);
+    });
+    setLoading(false);
   }
 
   const handleDelete = async (_id, id, e) => {
@@ -117,17 +98,6 @@ const InventoryAdmin = () => {
     
     axios.post('http://localhost:3001/inv/deleteImage', {
       itemID: id
-    });
-
-    loadInfo();
-    setLoading(false);
-  }
-
-  const loadInfo = async () => {
-    setLoading(true);
-    axios.get('http://localhost:3001/inv/getInventory').then((response) => {
-      setItemInfo(response.data.information);
-      console.log(response.data.information)
     });
     setLoading(false);
   }
@@ -195,65 +165,7 @@ const InventoryAdmin = () => {
         </form>
         {errorMessage && <div>{errorMessage}</div>}
       </Box>
-        <div className="currentInventoryMain">
-          <Paper elevation={5} className="inventoryShowcase">
-              {loading && <CircularProgress />}
-              <br />
-              <strong>Inventory</strong>
-              <Grid container spacing={2}>
-                {itemInfo && !loading && itemInfo.map((i) => {
-                  return (
-                    <Grid item >
-                      <Card 
-                      className="itemCard"
-                      elevation={5}>
-                        <div className="cardButtons">
-                          <div className="editIcon">
-                            <button
-                            className="editButton" 
-                            onClick={(e) => {
-                              handleEdit(i._id, e)
-                            }} ><EditIcon /></button>
-                          </div>
-                          <div className="deleteIcon">
-                            <button 
-                            className="deleteButton"
-                            onClick={(e) => {
-                              handleDelete(i._id, i.id, e)
-                            }}><HighlightOffOutlinedIcon sx={{color: "red"}} /></button>
-                          </div>
-                        </div>
-                        {i.publicId ? <Image 
-                        cloudName="disgd9pk6"
-                        className="itemImage"
-                        publicId={i.publicId} 
-                        crop="scale"
-                        /> 
-                        : 
-                        <CircularProgress />
-                        }
-                        <ul className="itemList">
-                          <li><strong>{i.item}</strong></li>
-                          <li>{truncateDesc(i.description)}</li>
-                          <li><strong>{i.price}</strong></li>
-                        </ul>
-                      </Card>
-                    </Grid>
-                    )
-                })}
-                {recentFile && 
-                <Card
-                className="itemCard"
-                elevation={5}>
-                    <ul className="itemList">
-                      <li><strong>{recentFile.itemName}</strong></li>
-                      <li>{recentFile.itemDesc}</li>
-                    <li><strong>{recentFile.itemPrice}</strong></li>
-                  </ul>
-                </Card>}
-              </Grid>
-          </Paper>
-      </div>
+        < CurrentInventory itemList={itemInfo} deleteItem={handleDelete} reloadInfo={loadInfo} />
     </div>
   )
 }
