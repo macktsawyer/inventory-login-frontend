@@ -36,8 +36,10 @@ const CurrentInventory = (props) => {
         setLoading(false);
     }
 
+
     useEffect(() => {
         setCurrentInfo(props.itemList)
+
     },[props.itemList])
 
 

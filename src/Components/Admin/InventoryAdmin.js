@@ -31,8 +31,9 @@ const InventoryAdmin = () => {
       item_price: itemPrice,
     }
     try {
-      await axios.post('http://localhost:3001/inv/newInventory', newItem).then(loadInfo()).catch(e => console.log(e));
-      loadInfo();
+      await axios.post('http://localhost:3001/inv/newInventory', newItem).then((response) => {
+        console.log(response)
+      })
     } catch (error) {
       console.error(error)
     }
@@ -69,7 +70,8 @@ const InventoryAdmin = () => {
     };
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     if(!selectedFile) return;
     const reader = new FileReader();
     reader.readAsDataURL(selectedFile);
@@ -80,11 +82,17 @@ const InventoryAdmin = () => {
       console.error('Something went wrong with file submission');
       setErrorMessage('Error With Submit Feature');
     }
+    setItemName('');
+    setItemDesc('');
+    setItemPrice('');
+    setPreviewSource();
+    setFileInput('');
+    setSelectedFile('');
   }
 
   const loadInfo = async () => {
     setLoading(true);
-    axios.get('http://localhost:3001/inv/getInventory').then((response) => {
+    await axios.get('http://localhost:3001/inv/getInventory').then((response) => {
       setItemInfo(response.data.information);
     });
     setLoading(false);
