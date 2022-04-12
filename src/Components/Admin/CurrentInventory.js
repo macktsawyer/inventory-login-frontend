@@ -6,11 +6,12 @@ import { Image } from 'cloudinary-react';
 import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
 import CircularProgress from '@mui/material/CircularProgress';
 import EditIcon from '@mui/icons-material/Edit';
+import axios from 'axios';
 
 
 const CurrentInventory = (props) => {
     const [ loading, setLoading ] = useState(false);
-    const [ currentInfo, setCurrentInfo ] = useState([]);
+    const [ currentItems, setCurrentItems] = useState([]);
 
     const truncateDesc = (text) => {
         if (text.length > 45) {
@@ -25,8 +26,10 @@ const CurrentInventory = (props) => {
         console.log(`Editing inventory ${id}`)
     }
 
-    const refreshInfo = () => {
-        props.reloadInfo();
+    const refreshInfo = async () => {
+        await axios.get('http://localhost:3001/inv/getInventory').then((response) => {
+            setCurrentItems(response.data.information);
+    });
     }
 
     const deleteClick = (_id, id, e) => {
@@ -36,12 +39,11 @@ const CurrentInventory = (props) => {
         setLoading(false);
     }
 
-
     useEffect(() => {
-        setCurrentInfo(props.itemList)
-
-    },[props.itemList])
-
+        axios.get('http://localhost:3001/inv/getInventory').then((response) => {
+            setCurrentItems(response.data.information);
+        });
+    },[])
 
     return (
         <div className="currentInventoryMain">
@@ -50,7 +52,7 @@ const CurrentInventory = (props) => {
                 <br />
                 <strong>Inventory</strong>
                 <Grid container spacing={2}>
-                    {currentInfo && !loading && currentInfo.map((i) => {
+                    {currentItems && !loading && currentItems.map((i) => {
                     return (
                         <Grid item >
                         <Card 

@@ -90,14 +90,6 @@ const InventoryAdmin = () => {
     setSelectedFile('');
   }
 
-  const loadInfo = async () => {
-    setLoading(true);
-    await axios.get('http://localhost:3001/inv/getInventory').then((response) => {
-      setItemInfo(response.data.information);
-    });
-    setLoading(false);
-  }
-
   const handleDelete = async (_id, id, e) => {
     e.preventDefault();
     setLoading(true);
@@ -111,7 +103,9 @@ const InventoryAdmin = () => {
   }
 
   useEffect(() => {
-    loadInfo();
+    axios.get('http://localhost:3001/inv/getInventory').then((response) => {
+      setItemInfo(response.data.information);
+    });
   },[])
 
   return (
@@ -173,7 +167,7 @@ const InventoryAdmin = () => {
         </form>
         {errorMessage && <div>{errorMessage}</div>}
       </Box>
-        < CurrentInventory itemList={itemInfo} deleteItem={handleDelete} reloadInfo={loadInfo} />
+        < CurrentInventory itemList={itemInfo} deleteItem={handleDelete} />
     </div>
   )
 }
