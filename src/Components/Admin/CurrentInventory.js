@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Paper from '@mui/material/Paper';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
@@ -6,12 +6,10 @@ import { Image } from 'cloudinary-react';
 import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
 import CircularProgress from '@mui/material/CircularProgress';
 import EditIcon from '@mui/icons-material/Edit';
-import axios from 'axios';
 
 
 const CurrentInventory = (props) => {
     const [ loading, setLoading ] = useState(false);
-    const [ currentItems, setCurrentItems] = useState([]);
 
     const truncateDesc = (text) => {
         if (text.length > 45) {
@@ -26,24 +24,11 @@ const CurrentInventory = (props) => {
         console.log(`Editing inventory ${id}`)
     }
 
-    const refreshInfo = async () => {
-        await axios.get('http://localhost:3001/inv/getInventory').then((response) => {
-            setCurrentItems(response.data.information);
-    });
-    }
-
     const deleteClick = (_id, id, e) => {
         setLoading(true);
         props.deleteItem(_id, id, e)
-        refreshInfo();
         setLoading(false);
     }
-
-    useEffect(() => {
-        axios.get('http://localhost:3001/inv/getInventory').then((response) => {
-            setCurrentItems(response.data.information);
-        });
-    },[])
 
     return (
         <div className="currentInventoryMain">
@@ -52,9 +37,9 @@ const CurrentInventory = (props) => {
                 <br />
                 <strong>Inventory</strong>
                 <Grid container spacing={2}>
-                    {currentItems && !loading && currentItems.map((i) => {
+                    {props.itemList && !loading && props.itemList.map((i) => {
                     return (
-                        <Grid item >
+                        <Grid item key={i._id}>
                         <Card 
                         className="itemCard"
                         elevation={5}>
