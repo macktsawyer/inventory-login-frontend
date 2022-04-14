@@ -12,10 +12,12 @@ const CurrentInventory = (props) => {
     const [ loading, setLoading ] = useState(false);
 
     const truncateDesc = (text) => {
-        if (text.length > 45) {
-          return text.substring(0, 44) + '...';
-        } else {
-          return text;
+        if (text) {
+            if (text.length > 45) {
+                return text.substring(0, 44) + '...';
+              } else {
+                return text;
+              }
         }
       }
     

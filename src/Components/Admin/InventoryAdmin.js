@@ -18,7 +18,6 @@ const InventoryAdmin = () => {
   const [ itemPrice, setItemPrice ] = useState('');
   const [ loading, setLoading ] = useState(false);
   const [ itemInfo, setItemInfo ] = useState([]);
-  const [ toggle, setToggle ] = useState(false)
   const user = localStorage.getItem('user');
 
   // Maybe create a temp state(recentFiles) to hold latest upload item, default null (conditional render !null && (latestUpload)). State will empty upon refresh and item will show like normal from api call
@@ -33,14 +32,12 @@ const InventoryAdmin = () => {
     }
     try {
       await axios.post('http://localhost:3001/inv/newInventory', newItem).then((response) => {
-        console.log(response)
+        setItemInfo(prev => [...prev, response.data])
       })
     } catch (error) {
       console.error(error)
     }
     setLoading(false);
-    setToggle(true);
-    console.log('toggle on')
   }
 
   const handleFileInputChange = (e) => {
@@ -119,14 +116,6 @@ const InventoryAdmin = () => {
   useEffect(() => {
     loadInfo();
   },[])
-
-  useEffect(() => {
-    if (toggle) {
-      setToggle(false)
-      loadInfo();
-      console.log('toggle off')
-    }
-  },[toggle])
 
   return (
     <div className="inventoryMaster">
