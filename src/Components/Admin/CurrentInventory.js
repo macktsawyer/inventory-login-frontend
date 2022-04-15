@@ -6,6 +6,7 @@ import { Image } from 'cloudinary-react';
 import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
 import CircularProgress from '@mui/material/CircularProgress';
 import EditIcon from '@mui/icons-material/Edit';
+import '../../Styles/CurrentInventory.scss';
 
 
 const CurrentInventory = (props) => {
@@ -41,6 +42,7 @@ const CurrentInventory = (props) => {
                 <Grid container spacing={2}>
                     {props.itemList && !loading && props.itemList.map((i) => {
                     return (
+                        <>
                         <Grid item key={i._id}>
                         <Card 
                         className="itemCard"
@@ -77,6 +79,21 @@ const CurrentInventory = (props) => {
                             </ul>
                         </Card>
                         </Grid>
+
+                        <div className='expandedView'>
+                            {
+                                <div className='hidden'>
+                                    <Image
+                                    cloudName="disgd9pk6"
+                                    className="itemImage"
+                                    publicId={i.publicId} 
+                                    crop="scale"
+                                    />                                    
+                                </div>
+
+                            }
+                        </div>
+                        </>
                         )
                     })}
                 </Grid>
