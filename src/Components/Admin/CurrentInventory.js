@@ -11,6 +11,7 @@ import '../../Styles/CurrentInventory.scss';
 
 const CurrentInventory = (props) => {
     const [ loading, setLoading ] = useState(false);
+    const [ isActive, setIsActive ] = useState();
 
     const truncateDesc = (text) => {
         if (text) {
@@ -31,6 +32,12 @@ const CurrentInventory = (props) => {
         setLoading(true);
         props.deleteItem(_id, id, e)
         setLoading(false);
+    }
+
+    const imagePopup = (e) => {
+        e.preventDefault();
+        setIsActive(true)
+        // Add ID to isActive. If isActive === ID, className becomes 'active'
     }
 
     return (
@@ -66,6 +73,7 @@ const CurrentInventory = (props) => {
                             {i.publicId ? <Image 
                             cloudName="disgd9pk6"
                             className="itemImage"
+                            onClick={imagePopup}
                             publicId={i.publicId} 
                             crop="scale"
                             /> 
@@ -85,7 +93,7 @@ const CurrentInventory = (props) => {
                                 <div className='hidden'>
                                     <Image
                                     cloudName="disgd9pk6"
-                                    className="itemImage"
+                                    className="expandedItemImage"
                                     publicId={i.publicId} 
                                     crop="scale"
                                     />                                    

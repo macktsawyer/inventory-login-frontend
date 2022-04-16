@@ -1,3 +1,76 @@
-.hidden {
-    display: none;
+.currentInventoryMain {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    width: 100vw;
+    height: 60vh;
+    .inventoryShowcase {
+        height: 90%;
+        width: 90%;
+        align-self: center;
+        overflow: scroll;
+        overflow-x: hidden;
+        .itemCard{
+            width: 15vw;
+            height: 30vh;
+            margin: 20px;
+            .cardButtons {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                margin-top: 5px;
+                margin-left: 2px;
+                margin-bottom: 0px;
+                width: 100%;
+                .editIcon {
+                    display: fixed;
+                    justify-self: flex-start;
+                    margin-left: 5px;
+                    .editButton {
+                        border: white;
+                        border-radius: 5px;
+                        background-color: white;
+                        cursor: pointer;
+                    }
+                    .editButton:hover {
+                        background-color: rgb(228, 239, 243);
+                    }
+                }
+                .deleteIcon {
+                    display: flex;
+                    margin-left: auto;
+                    margin-right: 5px;
+                    .deleteButton {
+                        border: white;
+                        border-radius: 5px;
+                        background-color: white;
+                        cursor: pointer;
+                    }
+                    .deleteButton:hover {
+                        background-color: rgb(250, 216, 216);
+                    }
+                }
+            }
+            .itemImage{
+                margin-top: -1vh;
+                width: 8vw;
+                cursor: pointer;
+            }
+            .itemList {
+                list-style-type: none;
+                margin-right: 25px;
+            }
+        }
+    }
 }
+
+.expandedView {
+    .hidden {
+        display: none;
+    }
+    .expandedItemImage {
+        border: 1px solid black;
+    }
+}
+
