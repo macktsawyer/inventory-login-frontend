@@ -34,10 +34,9 @@ const CurrentInventory = (props) => {
         setLoading(false);
     }
 
-    const imagePopup = (e) => {
+    const imagePopup = (e, _id) => {
         e.preventDefault();
-        setIsActive(true)
-        // Add ID to isActive. If isActive === ID, className becomes 'active'
+        setIsActive(_id);
     }
 
     return (
@@ -62,7 +61,7 @@ const CurrentInventory = (props) => {
                                 handleEdit(i._id, e)
                                 }} ><EditIcon /></button>
                             </div>
-                            <div className="deleteIcon">
+                            <div key={i._id} className="deleteIcon">
                                 <button 
                                 className="deleteButton"
                                 onClick={(e) => {
@@ -73,7 +72,7 @@ const CurrentInventory = (props) => {
                             {i.publicId ? <Image 
                             cloudName="disgd9pk6"
                             className="itemImage"
-                            onClick={imagePopup}
+                            onClick={(e) => {imagePopup(e, i._id)}}
                             publicId={i.publicId} 
                             crop="scale"
                             /> 
@@ -88,15 +87,21 @@ const CurrentInventory = (props) => {
                         </Card>
                         </Grid>
 
-                        <div className='expandedView'>
+                        <div key={i.id} className='expandedView'>
                             {
-                                <div className='hidden'>
+                                <div key={i._id} className={`${isActive === i._id ? 'active' : 'hidden'}`}>
                                     <Image
                                     cloudName="disgd9pk6"
                                     className="expandedItemImage"
                                     publicId={i.publicId} 
                                     crop="scale"
-                                    />                                    
+                                    />
+                                    <button 
+                                    className="closeButton"
+                                    onClick={(e) => {
+                                    e.preventDefault();
+                                    setIsActive('');
+                                    }}><HighlightOffOutlinedIcon sx={{color: "red"}} /></button>       
                                 </div>
 
                             }
