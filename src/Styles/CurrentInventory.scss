@@ -66,11 +66,16 @@
 }
 
 .expandedView {
-    .hidden {
-        display: none;
+    .expandedCard {
+        top: 50px;
+        .hidden {
+            display: none;
+        }
+        .expandedItemImage {
+            position: fixed;
+            
+        }
     }
-    .expandedItemImage {
-        border: 1px solid black;
-    }
+
 }
 

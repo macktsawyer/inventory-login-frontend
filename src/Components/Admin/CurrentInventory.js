@@ -12,6 +12,7 @@ import '../../Styles/CurrentInventory.scss';
 const CurrentInventory = (props) => {
     const [ loading, setLoading ] = useState(false);
     const [ isActive, setIsActive ] = useState();
+    const [ expandedItem, setExpandedItem ] = useState('');
 
     const truncateDesc = (text) => {
         if (text) {
@@ -34,9 +35,10 @@ const CurrentInventory = (props) => {
         setLoading(false);
     }
 
-    const imagePopup = (e, _id) => {
+    const imagePopup = (e, _id, itemInfo) => {
         e.preventDefault();
         setIsActive(_id);
+        setExpandedItem(itemInfo);
     }
 
     return (
@@ -72,7 +74,7 @@ const CurrentInventory = (props) => {
                             {i.publicId ? <Image 
                             cloudName="disgd9pk6"
                             className="itemImage"
-                            onClick={(e) => {imagePopup(e, i._id)}}
+                            onClick={(e) => {imagePopup(e, i._id, i)}}
                             publicId={i.publicId} 
                             crop="scale"
                             /> 
@@ -86,31 +88,31 @@ const CurrentInventory = (props) => {
                             </ul>
                         </Card>
                         </Grid>
-
-                        <div key={i.id} className='expandedView'>
-                            {
-                                <div key={i._id} className={`${isActive === i._id ? 'active' : 'hidden'}`}>
-                                    <Image
-                                    cloudName="disgd9pk6"
-                                    className="expandedItemImage"
-                                    publicId={i.publicId} 
-                                    crop="scale"
-                                    />
-                                    <button 
-                                    className="closeButton"
-                                    onClick={(e) => {
-                                    e.preventDefault();
-                                    setIsActive('');
-                                    }}><HighlightOffOutlinedIcon sx={{color: "red"}} /></button>       
-                                </div>
-
-                            }
-                        </div>
                         </>
                         )
                     })}
                 </Grid>
             </Paper>
+            <div key={expandedItem.id} className='expandedView'>
+                {
+                    <Card className="expandedCard" elevation={5}>
+                        <div key={expandedItem._id} className={`${isActive === expandedItem._id ? 'active' : 'hidden'}`}>
+                            <Image
+                            cloudName="disgd9pk6"
+                            className="expandedItemImage"
+                            publicId={expandedItem.publicId} 
+                            crop="scale"
+                            />
+                            <button 
+                            className="closeButton"
+                            onClick={(e) => {
+                            e.preventDefault();
+                            setIsActive('');
+                            }}><HighlightOffOutlinedIcon sx={{color: "red"}} /></button>       
+                        </div>
+                    </Card>
+                }
+            </div>
         </div>
     )
     }
