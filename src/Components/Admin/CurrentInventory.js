@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Paper from '@mui/material/Paper';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
 import { Image } from 'cloudinary-react';
 import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
+import CloseIcon from '@mui/icons-material/Close';
 import CircularProgress from '@mui/material/CircularProgress';
 import EditIcon from '@mui/icons-material/Edit';
 import '../../Styles/CurrentInventory.scss';
@@ -11,7 +12,7 @@ import '../../Styles/CurrentInventory.scss';
 
 const CurrentInventory = (props) => {
     const [ loading, setLoading ] = useState(false);
-    const [ isActive, setIsActive ] = useState();
+    const [ isActive, setIsActive ] = useState(false);
     const [ expandedItem, setExpandedItem ] = useState('');
 
     const truncateDesc = (text) => {
@@ -40,6 +41,10 @@ const CurrentInventory = (props) => {
         setIsActive(_id);
         setExpandedItem(itemInfo);
     }
+
+    useEffect(() => {
+        console.log(isActive)
+    }, [isActive])
 
     return (
         <div className="currentInventoryMain">
@@ -93,7 +98,7 @@ const CurrentInventory = (props) => {
                     })}
                 </Grid>
             </Paper>
-            <div key={expandedItem.id} className='expandedView'>
+            <Paper key={expandedItem.id} className={"expandedView " + (isActive === expandedItem._id ? 'active' : 'hidden')}>
                 {
                     <Card className="expandedCard" elevation={5}>
                         <div key={expandedItem._id} className={`${isActive === expandedItem._id ? 'active' : 'hidden'}`}>
@@ -108,13 +113,13 @@ const CurrentInventory = (props) => {
                             onClick={(e) => {
                             e.preventDefault();
                             setIsActive('');
-                            }}><HighlightOffOutlinedIcon sx={{color: "red"}} /></button>       
+                            }}><CloseIcon sx={{color: "red"}} /></button>       
                         </div>
                     </Card>
                 }
-            </div>
+            </Paper> 
         </div>
     )
-    }
+    } // Might want to create a new component for update inventory? Need to consider the styling as the 'expanded view' was a pain in the ass
 
     export default CurrentInventory

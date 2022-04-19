@@ -66,16 +66,36 @@
 }
 
 .expandedView {
+    position: fixed;
+    top: 25vh;
+    left: 25vw;
+    min-width: 50%;
+    min-height: 50%;
+    &.hidden {
+        display: none;
+    }
     .expandedCard {
-        top: 50px;
-        .hidden {
-            display: none;
-        }
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 50vw;
+        min-height: 50vh;
         .expandedItemImage {
+            display: flex;
+            margin: 5px;
+            max-height: 50vh;
+            max-width: 50vw;
+        }
+        .closeButton {
             position: fixed;
-            
+            top: 26vh;
+            right: 26vw;
+            width: 50px;
+            height: 50px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
         }
     }
-
 }
 
