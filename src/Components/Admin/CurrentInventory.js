@@ -4,6 +4,7 @@ import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
 import { Image } from 'cloudinary-react';
 import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
+import TextField from '@mui/material/TextField';
 import CloseIcon from '@mui/icons-material/Close';
 import CircularProgress from '@mui/material/CircularProgress';
 import EditIcon from '@mui/icons-material/Edit';
@@ -14,6 +15,8 @@ const CurrentInventory = (props) => {
     const [ loading, setLoading ] = useState(false);
     const [ isActive, setIsActive ] = useState(false);
     const [ expandedItem, setExpandedItem ] = useState('');
+    const [ editingItem, setEditingItem ] = useState('');
+    const [ isEditingActive, setIsEditingActive ] = useState(false);
 
     const truncateDesc = (text) => {
         if (text) {
@@ -25,9 +28,11 @@ const CurrentInventory = (props) => {
         }
       }
     
-    const handleEdit = (id, e) => {
+    const handleEdit = (_id, e, i) => {
         e.preventDefault();
-        console.log(`Editing inventory ${id}`)
+        setEditingItem(i);
+        setIsEditingActive(_id);
+        console.log(i)
     }
 
     const deleteClick = (_id, id, e) => {
@@ -65,7 +70,7 @@ const CurrentInventory = (props) => {
                                 <button
                                 className="editButton" 
                                 onClick={(e) => {
-                                handleEdit(i._id, e)
+                                handleEdit(i._id, e, i)
                                 }} ><EditIcon /></button>
                             </div>
                             <div key={i._id} className="deleteIcon">
@@ -100,7 +105,7 @@ const CurrentInventory = (props) => {
             </Paper>
             <Paper key={expandedItem.id} className={"expandedView " + (isActive === expandedItem._id ? 'active' : 'hidden')}>
                 {
-                    <Card className="expandedCard" elevation={5}>
+                    <Card key={expandedItem._id} className="expandedCard" elevation={5}>
                         <div key={expandedItem._id} className={`${isActive === expandedItem._id ? 'active' : 'hidden'}`}>
                             <Image
                             cloudName="disgd9pk6"
@@ -114,6 +119,64 @@ const CurrentInventory = (props) => {
                             e.preventDefault();
                             setIsActive('');
                             }}><CloseIcon sx={{color: "red"}} /></button>       
+                        </div>
+                    </Card>
+                }
+            </Paper>
+            <Paper className={'expandedEditView ' + (isEditingActive === editingItem._id ? 'active' : 'hidden')}>
+                {
+                    <Card className="expandedEditCard" elevation={5}>
+                        <div className='hidden'>
+                            <Image
+                            cloudName="disgd9pk6"
+                            className="editingItemImage"
+                            publicId={editingItem.publicId} 
+                            crop="scale"
+                            />
+                            <button 
+                            className="closeButton"
+                            onClick={(e) => {
+                            e.preventDefault();
+                            setIsEditingActive('');
+                            }}><CloseIcon sx={{color: "red"}} /></button>
+                            <form className="editItemForm">
+                                <TextField 
+                                id="standard-basic" 
+                                label="Name" 
+                                variant="standard"
+                                required={true}
+                                value={editingItem.item}
+                                className="inputField" />
+
+                                <TextField
+                                id="standard-basic-flexible"
+                                label="Description"
+                                variant="standard"
+                                multiline
+                                maxRows={6}
+                                required={true}
+                                value={editingItem.description}
+                                className="inputField" />
+
+                                <TextField 
+                                id="standard-basic" 
+                                label="Price" 
+                                variant="standard"
+                                required={true}
+                                value={editingItem.price}
+                                className="inputField" />
+
+                                <input 
+                                type="file"
+                                multiple
+                                accept="image/*"
+                                label="Images" 
+                                className="inputField"
+                                style={{marginTop: "15px"}}
+                                // value={fileInput} 
+                                />
+
+                            </form>
                         </div>
                     </Card>
                 }
