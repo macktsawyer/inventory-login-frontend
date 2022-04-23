@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Paper from '@mui/material/Paper';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
 import { Image } from 'cloudinary-react';
 import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
 import TextField from '@mui/material/TextField';
@@ -145,7 +146,7 @@ const CurrentInventory = (props) => {
                                 label="Name" 
                                 variant="standard"
                                 required={true}
-                                value={editingItem.item}
+                                value={editingItem.item ?? ''}
                                 className="inputField" />
 
                                 <TextField
@@ -155,7 +156,7 @@ const CurrentInventory = (props) => {
                                 multiline
                                 maxRows={6}
                                 required={true}
-                                value={editingItem.description}
+                                value={editingItem.description ?? ''}
                                 className="inputField" />
 
                                 <TextField 
@@ -163,19 +164,13 @@ const CurrentInventory = (props) => {
                                 label="Price" 
                                 variant="standard"
                                 required={true}
-                                value={editingItem.price}
+                                value={editingItem.price ?? ''}
                                 className="inputField" />
 
-                                <input 
-                                type="file"
-                                multiple
-                                accept="image/*"
-                                label="Images" 
-                                className="inputField"
-                                style={{marginTop: "15px"}}
-                                // value={fileInput} 
-                                />
-
+                                <Button
+                                className="inventorySubmit" 
+                                type="submit"
+                                style={{marginTop: "15px"}}>Edit Inventory</Button>
                             </form>
                         </div>
                     </Card>
