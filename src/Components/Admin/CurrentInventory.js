@@ -128,56 +128,58 @@ const CurrentInventory = (props) => {
                 {
                     <Card className="expandedEditCard" elevation={5}>
                         <div className='hidden'>
-                            <Image
-                            cloudName="disgd9pk6"
-                            className="editingItemImage"
-                            publicId={editingItem.publicId} 
-                            crop="scale"
-                            />
-                            <button 
-                            className="closeButton"
-                            onClick={(e) => {
-                            e.preventDefault();
-                            setIsEditingActive('');
-                            }}><CloseIcon sx={{color: "red"}} /></button>
-                            <form className="editItemForm">
-                                <TextField 
-                                id="standard-basic" 
-                                label="Name" 
-                                variant="standard"
-                                required={true}
-                                value={editingItem.item ?? ''}
-                                className="inputField" />
+                            <div className="editContentDiv">
+                                <Image
+                                cloudName="disgd9pk6"
+                                className="editingItemImage"
+                                publicId={editingItem.publicId} 
+                                crop="scale"
+                                />
+                                <button 
+                                className="closeButton"
+                                onClick={(e) => {
+                                e.preventDefault();
+                                setIsEditingActive('');
+                                }}><CloseIcon sx={{color: "red"}} /></button>
+                                <form className="editItemForm">
+                                    <TextField 
+                                    id="standard-basic" 
+                                    label="Name" 
+                                    variant="standard"
+                                    required={true}
+                                    value={editingItem.item ?? ''}
+                                    className="editField" />
 
-                                <TextField
-                                id="standard-basic-flexible"
-                                label="Description"
-                                variant="standard"
-                                multiline
-                                maxRows={6}
-                                required={true}
-                                value={editingItem.description ?? ''}
-                                className="inputField" />
+                                    <TextField
+                                    id="standard-basic-flexible"
+                                    label="Description"
+                                    variant="standard"
+                                    multiline
+                                    maxRows={6}
+                                    required={true}
+                                    value={editingItem.description ?? ''}
+                                    className="editField" />
 
-                                <TextField 
-                                id="standard-basic" 
-                                label="Price" 
-                                variant="standard"
-                                required={true}
-                                value={editingItem.price ?? ''}
-                                className="inputField" />
+                                    <TextField 
+                                    id="standard-basic" 
+                                    label="Price" 
+                                    variant="standard"
+                                    required={true}
+                                    value={editingItem.price ?? ''}
+                                    className="editField" />
 
-                                <Button
-                                className="inventorySubmit" 
-                                type="submit"
-                                style={{marginTop: "15px"}}>Edit Inventory</Button>
-                            </form>
+                                    <Button
+                                    className="editSubmit" 
+                                    type="submit"
+                                    style={{marginTop: "15px"}}>Edit Inventory</Button>
+                                </form>
+                            </div>
                         </div>
                     </Card>
                 }
             </Paper> 
         </div>
     )
-    } // Might want to create a new component for update inventory? Need to consider the styling as the 'expanded view' was a pain in the ass
+    } 
 
     export default CurrentInventory
