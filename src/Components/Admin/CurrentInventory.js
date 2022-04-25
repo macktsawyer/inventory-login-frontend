@@ -10,6 +10,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import CircularProgress from '@mui/material/CircularProgress';
 import EditIcon from '@mui/icons-material/Edit';
 import '../../Styles/CurrentInventory.scss';
+import axios from 'axios';
 
 
 const CurrentInventory = (props) => {
@@ -18,6 +19,12 @@ const CurrentInventory = (props) => {
     const [ expandedItem, setExpandedItem ] = useState('');
     const [ editingItem, setEditingItem ] = useState('');
     const [ isEditingActive, setIsEditingActive ] = useState(false);
+    const [ newItemEditedValue, setNewItemEditedValue ] = useState({
+        newItemName: '',
+        newItemDesc: '',
+        newItemPrice: ''
+    });
+    const [ itemInfo, setItemInfo ] = useState([]);
 
     const truncateDesc = (text) => {
         if (text) {
@@ -29,10 +36,15 @@ const CurrentInventory = (props) => {
         }
       }
     
-    const handleEdit = (_id, e, i) => {
+    const handleEditLogoClick = (_id, e, i) => {
         e.preventDefault();
         setEditingItem(i);
         setIsEditingActive(_id);
+        setNewItemEditedValue({
+            newItemName: i.item,
+            newItemDesc: i.description,
+            newItemPrice: i.price
+        })
         console.log(i)
     }
 
@@ -48,9 +60,35 @@ const CurrentInventory = (props) => {
         setExpandedItem(itemInfo);
     }
 
+    const handleEditOnChange = (e) => {
+        const value = e.target.value;
+        setNewItemEditedValue({
+            ...newItemEditedValue,
+            [e.target.name]: value
+        })
+    }
+
+    const handleEditSubmitForm = async (e) => {
+        e.preventDefault();
+        const newEditItem = {
+            item_name: newItemEditedValue.newItemName,
+            item_desc: newItemEditedValue.newItemDesc,
+            item_price: newItemEditedValue.newItemPrice
+        }
+        try {
+            await axios.post('http://localhost:3001/inv//updateInventory', newEditItem).then((response) => {
+              setItemInfo(prev => [...prev, response.data])
+            })
+          } catch (error) {
+            console.error(error)
+          }
+        // Close Edit Form On Submit
+    }
+
     useEffect(() => {
+        setItemInfo(props.itemList)
         console.log(isActive)
-    }, [isActive])
+    }, [isActive, props.itemList])
 
     return (
         <div className="currentInventoryMain">
@@ -59,7 +97,7 @@ const CurrentInventory = (props) => {
                 <br />
                 <strong>Inventory</strong>
                 <Grid container spacing={2}>
-                    {props.itemList && !loading && props.itemList.map((i) => {
+                    {itemInfo && !loading && itemInfo.map((i) => {
                     return (
                         <>
                         <Grid item key={i._id}>
@@ -71,7 +109,7 @@ const CurrentInventory = (props) => {
                                 <button
                                 className="editButton" 
                                 onClick={(e) => {
-                                handleEdit(i._id, e, i)
+                                handleEditLogoClick(i._id, e, i)
                                 }} ><EditIcon /></button>
                             </div>
                             <div key={i._id} className="deleteIcon">
@@ -147,7 +185,9 @@ const CurrentInventory = (props) => {
                                     label="Name" 
                                     variant="standard"
                                     required={true}
-                                    value={editingItem.item ?? ''}
+                                    name="newItemName"
+                                    value={newItemEditedValue.newItemName ?? ''}
+                                    onChange={handleEditOnChange}
                                     className="editField" />
 
                                     <TextField
@@ -157,7 +197,9 @@ const CurrentInventory = (props) => {
                                     multiline
                                     maxRows={6}
                                     required={true}
-                                    value={editingItem.description ?? ''}
+                                    name="newItemDesc"
+                                    value={newItemEditedValue.newItemDesc ?? ''}
+                                    onChange={handleEditOnChange}
                                     className="editField" />
 
                                     <TextField 
@@ -165,7 +207,9 @@ const CurrentInventory = (props) => {
                                     label="Price" 
                                     variant="standard"
                                     required={true}
-                                    value={editingItem.price ?? ''}
+                                    name="newItemPrice"
+                                    value={newItemEditedValue.newItemPrice ?? ''}
+                                    onChange={handleEditOnChange}
                                     className="editField" />
 
                                     <Button
