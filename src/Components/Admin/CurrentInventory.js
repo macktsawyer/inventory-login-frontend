@@ -22,13 +22,14 @@ const CurrentInventory = (props) => {
     const [ newItemEditedValue, setNewItemEditedValue ] = useState({
         newItemName: '',
         newItemDesc: '',
-        newItemPrice: ''
+        newItemPrice: '',
+        newItemID: ''
     });
     const [ itemInfo, setItemInfo ] = useState([]);
 
     const truncateDesc = (text) => {
         if (text) {
-            if (text.length > 45) {
+            if (text.length > 45) { // If text is too long will shorten it and end the string with ...
                 return text.substring(0, 44) + '...';
               } else {
                 return text;
@@ -38,12 +39,13 @@ const CurrentInventory = (props) => {
     
     const handleEditLogoClick = (_id, e, i) => {
         e.preventDefault();
-        setEditingItem(i);
-        setIsEditingActive(_id);
+        setEditingItem(i); // Selects which item is being edited
+        setIsEditingActive(_id); // Checks if editing is active to 'un-hide' 
         setNewItemEditedValue({
             newItemName: i.item,
-            newItemDesc: i.description,
-            newItemPrice: i.price
+            newItemDesc: i.description, // Assigns values to input fields and will pass to backend.
+            newItemPrice: i.price,
+            newItemID: i._id
         })
         console.log(i)
     }
@@ -73,7 +75,8 @@ const CurrentInventory = (props) => {
         const newEditItem = {
             item_name: newItemEditedValue.newItemName,
             item_desc: newItemEditedValue.newItemDesc,
-            item_price: newItemEditedValue.newItemPrice
+            item_price: newItemEditedValue.newItemPrice,
+            item_id: newItemEditedValue.newItemID
         }
         try {
             await axios.post('http://localhost:3001/inv//updateInventory', newEditItem).then((response) => {
@@ -179,7 +182,9 @@ const CurrentInventory = (props) => {
                                 e.preventDefault();
                                 setIsEditingActive('');
                                 }}><CloseIcon sx={{color: "red"}} /></button>
-                                <form className="editItemForm">
+                                <form 
+                                className="editItemForm"
+                                onSubmit={handleEditSubmitForm}>
                                     <TextField 
                                     id="standard-basic" 
                                     label="Name" 
