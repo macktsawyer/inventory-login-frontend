@@ -79,13 +79,14 @@ const CurrentInventory = (props) => {
             item_id: newItemEditedValue.newItemID
         }
         try {
-            await axios.post('http://localhost:3001/inv//updateInventory', newEditItem).then((response) => {
+            await axios.put('http://localhost:3001/inv/updateInventory', newEditItem).then((response) => {
               setItemInfo(prev => [...prev, response.data])
             })
           } catch (error) {
             console.error(error)
           }
-        // Close Edit Form On Submit
+        setIsEditingActive('');
+        console.log(itemInfo)
     }
 
     useEffect(() => {
