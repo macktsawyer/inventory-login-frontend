@@ -86,7 +86,6 @@ const CurrentInventory = (props) => {
             console.error(error)
           }
         setIsEditingActive('');
-        console.log(itemInfo)
     }
 
     useEffect(() => {
