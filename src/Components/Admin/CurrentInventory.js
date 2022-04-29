@@ -19,13 +19,14 @@ const CurrentInventory = (props) => {
     const [ expandedItem, setExpandedItem ] = useState('');
     const [ editingItem, setEditingItem ] = useState('');
     const [ isEditingActive, setIsEditingActive ] = useState(false);
+    const [ itemInfo, setItemInfo ] = useState([]);
     const [ newItemEditedValue, setNewItemEditedValue ] = useState({
         newItemName: '',
         newItemDesc: '',
         newItemPrice: '',
         newItemID: ''
     });
-    const [ itemInfo, setItemInfo ] = useState([]);
+
 
     const truncateDesc = (text) => {
         if (text) {
@@ -80,7 +81,8 @@ const CurrentInventory = (props) => {
         }
         try {
             await axios.put('http://localhost:3001/inv/updateInventory', newEditItem).then((response) => {
-              setItemInfo(prev => [...prev, response.data])
+              setItemInfo(response.data)
+              console.log(response.data)
             })
           } catch (error) {
             console.error(error)
