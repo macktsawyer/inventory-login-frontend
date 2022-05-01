@@ -2,23 +2,18 @@ import React, { useEffect, useState } from 'react';
 import Paper from '@mui/material/Paper';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
 import { Image } from 'cloudinary-react';
 import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
-import TextField from '@mui/material/TextField';
 import CloseIcon from '@mui/icons-material/Close';
 import CircularProgress from '@mui/material/CircularProgress';
 import EditIcon from '@mui/icons-material/Edit';
 import '../../Styles/CurrentInventory.scss';
-import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 
 const CurrentInventory = (props) => {
     const [ loading, setLoading ] = useState(false);
     const [ isActive, setIsActive ] = useState(false);
     const [ expandedItem, setExpandedItem ] = useState('');
-    const [ editingItem, setEditingItem ] = useState('');
-    const [ isEditingActive, setIsEditingActive ] = useState(false);
     const [ itemInfo, setItemInfo ] = useState([]);
     const [ newItemEditedValue, setNewItemEditedValue ] = useState({
         newItemName: '',
@@ -26,6 +21,7 @@ const CurrentInventory = (props) => {
         newItemPrice: '',
         newItemID: ''
     });
+    let Navigate = useNavigate();
 
 
     const truncateDesc = (text) => {
@@ -40,15 +36,13 @@ const CurrentInventory = (props) => {
     
     const handleEditLogoClick = (_id, e, i) => {
         e.preventDefault();
-        setEditingItem(i); // Selects which item is being edited
-        setIsEditingActive(_id); // Checks if editing is active to 'un-hide' 
         setNewItemEditedValue({
             newItemName: i.item,
             newItemDesc: i.description, // Assigns values to input fields and will pass to backend.
             newItemPrice: i.price,
             newItemID: i._id
         })
-        console.log(i)
+        Navigate('/EditInventory', {itemProps: newItemEditedValue});
     }
 
     const deleteClick = (_id, id, e) => {
@@ -63,32 +57,6 @@ const CurrentInventory = (props) => {
         setExpandedItem(itemInfo);
     }
 
-    const handleEditOnChange = (e) => {
-        const value = e.target.value;
-        setNewItemEditedValue({
-            ...newItemEditedValue,
-            [e.target.name]: value
-        })
-    }
-
-    const handleEditSubmitForm = async (e) => {
-        e.preventDefault();
-        const newEditItem = {
-            item_name: newItemEditedValue.newItemName,
-            item_desc: newItemEditedValue.newItemDesc,
-            item_price: newItemEditedValue.newItemPrice,
-            item_id: newItemEditedValue.newItemID
-        }
-        try {
-            await axios.put('http://localhost:3001/inv/updateInventory', newEditItem).then((response) => {
-              setItemInfo(response.data)
-              console.log(response.data)
-            })
-          } catch (error) {
-            console.error(error)
-          }
-        setIsEditingActive('');
-    }
 
     useEffect(() => {
         setItemInfo(props.itemList)
@@ -167,68 +135,6 @@ const CurrentInventory = (props) => {
                     </Card>
                 }
             </Paper>
-            <Paper className={'expandedEditView ' + (isEditingActive === editingItem._id ? 'active' : 'hidden')}>
-                {
-                    <Card className="expandedEditCard" elevation={5}>
-                        <div className='hidden'>
-                            <div className="editContentDiv">
-                                <Image
-                                cloudName="disgd9pk6"
-                                className="editingItemImage"
-                                publicId={editingItem.publicId} 
-                                crop="scale"
-                                />
-                                <button 
-                                className="closeButton"
-                                onClick={(e) => {
-                                e.preventDefault();
-                                setIsEditingActive('');
-                                }}><CloseIcon sx={{color: "red"}} /></button>
-                                <form 
-                                className="editItemForm"
-                                onSubmit={handleEditSubmitForm}>
-                                    <TextField 
-                                    id="standard-basic" 
-                                    label="Name" 
-                                    variant="standard"
-                                    required={true}
-                                    name="newItemName"
-                                    value={newItemEditedValue.newItemName ?? ''}
-                                    onChange={handleEditOnChange}
-                                    className="editField" />
-
-                                    <TextField
-                                    id="standard-basic-flexible"
-                                    label="Description"
-                                    variant="standard"
-                                    multiline
-                                    maxRows={6}
-                                    required={true}
-                                    name="newItemDesc"
-                                    value={newItemEditedValue.newItemDesc ?? ''}
-                                    onChange={handleEditOnChange}
-                                    className="editField" />
-
-                                    <TextField 
-                                    id="standard-basic" 
-                                    label="Price" 
-                                    variant="standard"
-                                    required={true}
-                                    name="newItemPrice"
-                                    value={newItemEditedValue.newItemPrice ?? ''}
-                                    onChange={handleEditOnChange}
-                                    className="editField" />
-
-                                    <Button
-                                    className="editSubmit" 
-                                    type="submit"
-                                    style={{marginTop: "15px"}}>Edit Inventory</Button>
-                                </form>
-                            </div>
-                        </div>
-                    </Card>
-                }
-            </Paper> 
         </div>
     )
     } 

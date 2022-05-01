@@ -11,6 +11,7 @@ import PasswordChange from './Components/Admin/PasswordChange';
 import { Routes, Route } from 'react-router-dom';
 import { AuthContext } from './Services/authContext';
 import ProtectedRoute from './Services/ProtectedRoutes';
+import EditInventory from './Components/Admin/EditInventory';
 
 function App() {
   const [ userValue, setUserValue ] = useState();
@@ -39,6 +40,7 @@ function App() {
             <Route path='/Admin' element={<Admin />} />
             <Route path='/Logout' element={<Logout />} />
             <Route path='/PasswordChange' element={<PasswordChange />} />
+            <Route path='/EditInventory' element={<EditInventory />} />
           </Route>
         </Routes>
       </AuthContext.Provider>

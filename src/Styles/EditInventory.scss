@@ -1,0 +1,51 @@
+.homeButton {
+    background-color: rgb(216, 216, 216);
+    position: fixed;
+    top: 0;
+    left: 0;
+    text-decoration: none;
+    width: 100vw;
+    height: 40px;
+    a {
+        text-decoration: none;
+    }
+    a:link {
+        text-decoration: none;
+    }
+    a:visited {
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: none;
+    }
+    a:active {
+        text-decoration: none;
+    }
+}
+
+.footerBar{
+    background-color: rgb(216, 216, 216);
+    text-decoration: none;
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    a {
+        text-decoration: none;
+    }
+    a:link {
+        text-decoration: none;
+    }
+    a:visited {
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: none;
+    }
+    a:active {
+        text-decoration: none;
+    }
+}
+
+.editMainContent {
+    margin-top: 40px;
+}
