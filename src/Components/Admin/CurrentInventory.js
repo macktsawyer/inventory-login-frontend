@@ -15,12 +15,6 @@ const CurrentInventory = (props) => {
     const [ isActive, setIsActive ] = useState(false);
     const [ expandedItem, setExpandedItem ] = useState('');
     const [ itemInfo, setItemInfo ] = useState([]);
-    const [ newItemEditedValue, setNewItemEditedValue ] = useState({
-        newItemName: '',
-        newItemDesc: '',
-        newItemPrice: '',
-        newItemID: ''
-    });
     let Navigate = useNavigate();
 
 
@@ -36,13 +30,13 @@ const CurrentInventory = (props) => {
     
     const handleEditLogoClick = (_id, e, i) => {
         e.preventDefault();
-        setNewItemEditedValue({
-            newItemName: i.item,
-            newItemDesc: i.description, // Assigns values to input fields and will pass to backend.
-            newItemPrice: i.price,
-            newItemID: i._id
-        })
-        Navigate('/EditInventory', {itemProps: newItemEditedValue});
+        console.log(i)
+        Navigate('/EditInventory', {state: 
+        {newItemName: i.item,
+         newItemDesc: i.description, // Assigns values to input fields and will pass to backend.
+         newItemPrice: i.price,
+         newItemID: i._id, 
+         newItemPub: i.publicId }});
     }
 
     const deleteClick = (_id, id, e) => {

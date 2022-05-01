@@ -48,4 +48,40 @@
 
 .editMainContent {
     margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    .editFormPaper {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        margin: 5px;
+        width: 80vw;
+        .editFormCard {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            align-self: center;
+            margin: 15px;
+            width: 50%;
+            .editItemImage {
+                width: 250px;
+            }
+            .editItemForm {
+                display: flex;
+                flex-direction: column;
+                width: 60%;
+                padding: 20px;
+                .inputField {
+                    margin: 15px;
+                }
+            }
+            .editSubmitButton {
+                margin-top: 10px;
+            }
+        }
+    }    
 }
+
+
