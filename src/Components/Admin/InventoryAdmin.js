@@ -90,7 +90,7 @@ const InventoryAdmin = () => {
     setSelectedFile('');
   }
 
-  const handleDelete = async (_id, id, e) => {
+  const handleDelete = async (e, _id, id) => {
     e.preventDefault();
     setLoading(true);
     console.log(`Deleted inventory item ${id}`)

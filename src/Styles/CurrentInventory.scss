@@ -99,8 +99,37 @@
     }
 }
 
+.deleteWarning {
+    position: fixed;
+    width: 50%;
+    height: 50%;
+    &.hidden {
+        display: none;
+    }
+    &.active {
+        display: contents;
+    }
+    .deleteCard {
+        position: fixed;
+        top: 40vh;
+        left: 37vw;
+        width: 25vw;
+        height: 30vh;
+    }
+    .deleteItemList {
+        list-style: none;
+        margin-right: 35px;
+    }
+}
 
-
+.blindingBackground {
+    min-width: 100vw;
+    min-height: 100vh;
+    &.hidden {
+        display: none;
+    }
+    z-index: -1;
+}
 
 
 

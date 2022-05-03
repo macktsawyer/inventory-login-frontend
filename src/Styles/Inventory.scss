@@ -1,0 +1,33 @@
+
+.mainContent {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.itemPaper {
+    min-height: 90%;
+    width: 90%;
+    align-self: center;
+    overflow: scroll;
+    overflow-x: hidden;
+    .itemCard {
+        width: 15vw;
+        height: 30vh;
+        margin: 20px;
+        .itemImage {
+            margin-top: 10px;
+            width: 8vw;
+            cursor: pointer;
+        }
+        .itemList {
+            list-style-type: none;
+            margin-right: 25px;
+            padding: 5px;
+            font-size: 1.5vh;
+        }
+    }
+}
+

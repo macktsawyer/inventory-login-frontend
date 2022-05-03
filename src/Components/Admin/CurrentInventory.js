@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Paper from '@mui/material/Paper';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
 import { Image } from 'cloudinary-react';
 import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
 import CloseIcon from '@mui/icons-material/Close';
@@ -15,6 +16,8 @@ const CurrentInventory = (props) => {
     const [ isActive, setIsActive ] = useState(false);
     const [ expandedItem, setExpandedItem ] = useState('');
     const [ itemInfo, setItemInfo ] = useState([]);
+    const [ deleteVisible, setDeleteVisible ] = useState(false);
+    const [ deleteItem, setDeleteItem ] = useState([]);
     let Navigate = useNavigate();
 
 
@@ -39,9 +42,18 @@ const CurrentInventory = (props) => {
          newItemPub: i.publicId }});
     }
 
-    const deleteClick = (_id, id, e) => {
+    const deleteClick = (e, _id, i) => {
         setLoading(true);
-        props.deleteItem(_id, id, e)
+        setDeleteVisible(true);
+        setDeleteItem(i);
+        setLoading(false);
+    }
+
+    const deleteConfirmed = (e, _id, id) => {
+        setLoading(true);
+        props.deleteItem(e, _id, id);
+        setDeleteVisible(false);
+        setDeleteItem([]);
         setLoading(false);
     }
 
@@ -83,8 +95,7 @@ const CurrentInventory = (props) => {
                                 <button 
                                 className="deleteButton"
                                 onClick={(e) => {
-                                deleteClick(i._id, i.id, e)
-                                }}><HighlightOffOutlinedIcon sx={{color: "red"}} /></button>
+                                    deleteClick(i._id, e, i)}}><HighlightOffOutlinedIcon sx={{color: "red"}} /></button>
                             </div>
                             </div>
                             {i.publicId ? <Image 
@@ -129,6 +140,32 @@ const CurrentInventory = (props) => {
                     </Card>
                 }
             </Paper>
+            <Paper elevation={5} className={"deleteWarning " + (deleteVisible === true ? 'active' : 'hidden')}>
+                <Card elevation={5} className="deleteCard">
+                    <h4>{deleteItem.item}</h4>
+                    <Image 
+                        cloudName="disgd9pk6"
+                        className="itemImage"
+                        style={{width: 100}}
+                        publicId={deleteItem.publicId} 
+                        crop="scale"
+                        /> 
+                    <ul className="deleteItemList">
+                        <li>{deleteItem.description}</li>
+                        <li>{deleteItem.price}</li>
+                    </ul>
+                    <Button onClick={(e) => {
+                            e.preventDefault();
+                            deleteConfirmed(e, deleteItem._id, deleteItem.id)}}>Confirm Delete</Button>
+                    <Button onClick={(e) => {
+                            e.preventDefault();
+                            setDeleteVisible(false);;
+                            }}>Cancel</Button>
+                </Card>
+            </Paper>
+            <div className={"blindingBackground " + (deleteVisible === true ? 'active' : 'hidden')}>
+
+            </div>
         </div>
     )
     } 
