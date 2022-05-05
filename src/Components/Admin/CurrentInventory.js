@@ -136,8 +136,12 @@ const CurrentInventory = (props) => {
                             e.preventDefault();
                             setIsActive('');
                             }}><CloseIcon sx={{color: "red"}} /></button> 
+                            <h5>{expandedItem.item}</h5>
+                            <ul>
+                                <li>{expandedItem.description}</li>
+                                <li>{expandedItem.price}</li>
+                            </ul>
                         </div>
-                        // Need to display information with expanded view still
                     </Card>
                 }
             </Paper>
