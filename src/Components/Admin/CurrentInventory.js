@@ -138,8 +138,8 @@ const CurrentInventory = (props) => {
                             }}><CloseIcon sx={{color: "red"}} /></button> 
                             <h5>{expandedItem.item}</h5>
                             <ul>
-                                <li>{expandedItem.description}</li>
-                                <li>{expandedItem.price}</li>
+                                <li style={{listStyle: "none"}}>{expandedItem.description}</li>
+                                <li style={{listStyle: "none"}}>{expandedItem.price}</li>
                             </ul>
                         </div>
                     </Card>
