@@ -140,6 +140,7 @@ const CurrentInventory = (props) => {
                             <ul>
                                 <li style={{listStyle: "none"}}>{expandedItem.description}</li>
                                 <li style={{listStyle: "none"}}>{expandedItem.price}</li> // Work on styles to make more appealing
+                                // Considering new fonts
                             </ul>
                         </div>
                     </Card>
