@@ -139,7 +139,7 @@ const CurrentInventory = (props) => {
                             <h5>{expandedItem.item}</h5>
                             <ul>
                                 <li style={{listStyle: "none"}}>{expandedItem.description}</li>
-                                <li style={{listStyle: "none"}}>{expandedItem.price}</li>
+                                <li style={{listStyle: "none"}}>{expandedItem.price}</li> // Work on styles to make more appealing
                             </ul>
                         </div>
                     </Card>
@@ -169,7 +169,6 @@ const CurrentInventory = (props) => {
                 </Card>
             </Paper>
             <div className={"blindingBackground " + (deleteVisible === true ? 'active' : 'hidden')}>
-
             </div>
         </div>
     )
