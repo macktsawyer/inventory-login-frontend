@@ -141,6 +141,7 @@ const CurrentInventory = (props) => {
                                 <li style={{listStyle: "none"}}>{expandedItem.description}</li>
                                 <li style={{listStyle: "none"}}>{expandedItem.price}</li> // Work on styles to make more appealing
                                 // Considering new fonts
+                                // Need to work on aesthetics a bit more for admin side
                             </ul>
                         </div>
                     </Card>
