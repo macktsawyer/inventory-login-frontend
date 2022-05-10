@@ -12,6 +12,9 @@ const About = () => {
         <NavBar />
         <div>
             About
+            <div className="aboutUsMain">
+              <h2>About Us</h2>
+            </div>
         </div>
         <footer className="footerBar">
           {token === 'null'  
