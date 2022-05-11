@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
+import Card from '@mui/material/Card';
 import NavBar from './NavBar.js';
 import '../Styles/About.scss';
 
@@ -14,6 +16,9 @@ const About = () => {
             About
             <div className="aboutUsMain">
               <h2>About Us</h2>
+              <Paper>
+                <p>Hello there</p>
+              </Paper>
             </div>
         </div>
         <footer className="footerBar">
