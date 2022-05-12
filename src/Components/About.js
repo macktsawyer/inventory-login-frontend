@@ -16,7 +16,7 @@ const About = () => {
             About
             <div className="aboutUsMain">
               <h2>About Us</h2>
-              <Paper>
+              <Paper className="aboutMainPaper">
                 <p>Hello there</p>
               </Paper>
             </div>

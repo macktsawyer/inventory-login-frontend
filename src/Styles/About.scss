@@ -1,0 +1,10 @@
+.aboutUsMain {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    min-width: 90%;
+    .aboutMainPaper {
+        min-height: 80%;
+        min-width: 90vw;
+    }
+}
