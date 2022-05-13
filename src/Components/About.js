@@ -13,13 +13,12 @@ const About = () => {
     <>
         <NavBar />
         <div>
-            About
-            <div className="aboutUsMain">
-              <h2>About Us</h2>
-              <Paper className="aboutMainPaper">
-                <p>Hello there</p>
-              </Paper>
-            </div>
+          <div className="aboutUsMain">
+            <h2>About Us</h2>
+            <Paper className="aboutMainPaper">
+              <p>Hello there</p>
+            </Paper>
+          </div>
         </div>
         <footer className="footerBar">
           {token === 'null'  
