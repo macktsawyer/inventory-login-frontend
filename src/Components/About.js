@@ -16,7 +16,12 @@ const About = () => {
           <div className="aboutUsMain">
             <h2>About Us</h2>
             <Paper className="aboutMainPaper">
-              <p>Hello there</p>
+              <Card>
+                <p>About The Business</p>
+              </Card>
+              <Card>
+                <p>Company Motto</p>
+              </Card>
             </Paper>
           </div>
         </div>
