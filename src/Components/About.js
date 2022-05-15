@@ -17,7 +17,7 @@ const About = () => {
             <h2>About Us</h2>
             <Paper className="aboutMainPaper">
               <Card>
-                <p>About The Business</p>
+                <h5>About The Business</h5>
               </Card>
               <Card>
                 <p>Company Motto</p>
