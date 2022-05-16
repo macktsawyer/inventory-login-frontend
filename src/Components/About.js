@@ -16,10 +16,10 @@ const About = () => {
           <div className="aboutUsMain">
             <h2>About Us</h2>
             <Paper className="aboutMainPaper">
-              <Card>
+              <Card className="aboutTitle">
                 <h5>About The Business</h5>
               </Card>
-              <Card>
+              <Card className="aboutMotto">
                 <p>Company Motto</p>
               </Card>
             </Paper>
