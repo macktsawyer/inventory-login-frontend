@@ -3,14 +3,17 @@
     flex-direction: column;
     min-height: 100vh;
     min-width: 90%;
+    font-family: 'Roboto', sans-serif;
     .aboutMainPaper {
         min-height: 80vh;
         min-width: 90vw;
         .aboutTitle {
             height: 20vh;
+            font-family: 'Roboto', sans-serif;
         }
         .aboutMotto {
             height: 40vh;
+            font-family: 'Roboto', sans-serif;
         }
     }
 }
