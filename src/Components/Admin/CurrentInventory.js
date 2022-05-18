@@ -20,7 +20,6 @@ const CurrentInventory = (props) => {
     const [ deleteItem, setDeleteItem ] = useState([]);
     let Navigate = useNavigate();
 
-
     const truncateDesc = (text) => {
         if (text) {
             if (text.length > 45) { // If text is too long will shorten it and end the string with ...
@@ -33,7 +32,6 @@ const CurrentInventory = (props) => {
     
     const handleEditLogoClick = (_id, e, i) => {
         e.preventDefault();
-        console.log(i)
         Navigate('/EditInventory', {state: 
         {newItemName: i.item,
          newItemDesc: i.description, // Assigns values to input fields and will pass to backend.
@@ -139,8 +137,8 @@ const CurrentInventory = (props) => {
                             <h5>{expandedItem.item}</h5>
                             <ul>
                                 <li style={{listStyle: "none"}}>{expandedItem.description}</li>
-                                <li style={{listStyle: "none"}}>{expandedItem.price}</li> // Work on styles to make more appealing
-                                // Considering new fonts
+                                <li style={{listStyle: "none"}}>{expandedItem.price}</li> 
+                                // Work on styles to make more appealing
                                 // Need to work on aesthetics a bit more for admin side
                             </ul>
                         </div>
