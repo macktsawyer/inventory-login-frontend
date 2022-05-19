@@ -140,6 +140,7 @@ const CurrentInventory = (props) => {
                                 <li style={{listStyle: "none"}}>{expandedItem.price}</li> 
                                 // Work on styles to make more appealing
                                 // Need to work on aesthetics a bit more for admin side
+                                // Need to set a meet with Jim
                             </ul>
                         </div>
                     </Card>
