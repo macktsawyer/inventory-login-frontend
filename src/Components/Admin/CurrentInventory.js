@@ -141,6 +141,7 @@ const CurrentInventory = (props) => {
                                 // Work on styles to make more appealing
                                 // Need to work on aesthetics a bit more for admin side
                                 // Need to set a meet with Jim
+                                // Work on recovery options
                             </ul>
                         </div>
                     </Card>
