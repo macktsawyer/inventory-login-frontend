@@ -101,7 +101,7 @@ const EditInventory = () => {
                         <Button
                         className="editSubmitButton" 
                         type="submit"
-                        style={{marginTop: "15px"}}>Edit Inventory</Button>
+                        style={{marginTop: "15px"}}>Confirm Edit</Button>
                     </form>
                     <Button
                         className="editSubmitButton" 
