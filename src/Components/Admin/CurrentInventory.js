@@ -18,6 +18,8 @@ const CurrentInventory = (props) => {
     const [ itemInfo, setItemInfo ] = useState([]);
     const [ deleteVisible, setDeleteVisible ] = useState(false);
     const [ deleteItem, setDeleteItem ] = useState([]);
+    const user = localStorage.getItem('user');
+    const token = localStorage.getItem('tokens');
     let Navigate = useNavigate();
 
     const truncateDesc = (text) => {
@@ -49,7 +51,7 @@ const CurrentInventory = (props) => {
 
     const deleteConfirmed = (e, _id, id) => {
         setLoading(true);
-        props.deleteItem(e, _id, id);
+        if (user && token) {props.deleteItem(e, _id, id)};
         setDeleteVisible(false);
         setDeleteItem([]);
         setLoading(false);
@@ -138,10 +140,6 @@ const CurrentInventory = (props) => {
                             <ul>
                                 <li style={{listStyle: "none"}}>{expandedItem.description}</li>
                                 <li style={{listStyle: "none"}}>{expandedItem.price}</li> 
-                                // Work on styles to make more appealing
-                                // Need to work on aesthetics a bit more for admin side
-                                // Need to set a meet with Jim
-                                // Work on recovery options
                             </ul>
                         </div>
                     </Card>

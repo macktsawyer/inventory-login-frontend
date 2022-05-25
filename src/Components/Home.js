@@ -5,7 +5,6 @@ import NavBar from './NavBar.js';
 import '../Styles/Home.scss';
 
 const Home = () => {
-
   let token = localStorage.getItem('tokens')
 
   return (
