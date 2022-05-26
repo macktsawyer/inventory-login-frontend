@@ -12,8 +12,8 @@
         overflow: scroll;
         overflow-x: hidden;
         .itemCard{
-            width: 15vw;
-            height: 30vh;
+            width: 280px;
+            height: 280px;
             margin: 20px;
             .cardButtons {
                 display: flex;
@@ -54,12 +54,16 @@
             }
             .itemImage{
                 margin-top: -1vh;
-                width: 8vw;
+                width: 120px;
                 cursor: pointer;
             }
             .itemList {
                 list-style-type: none;
                 margin-right: 25px;
+                margin-top: 15px;
+                li {
+                    margin: 5px;
+                }
             }
         }
     }
