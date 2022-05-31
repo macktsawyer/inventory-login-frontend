@@ -7,12 +7,15 @@
     .aboutMainPaper {
         min-height: 80vh;
         min-width: 90vw;
+        justify-self: center;
+        align-self: center;
         .aboutTitle {
             height: 20vh;
             font-family: 'Roboto', sans-serif;
         }
         .aboutMotto {
             height: 40vh;
+            max-width: 80vw;
             font-family: 'Roboto', sans-serif;
         }
     }
