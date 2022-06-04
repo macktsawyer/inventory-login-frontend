@@ -8,6 +8,7 @@ import '../Styles/About.scss';
 
 const About = () => {
   let token = localStorage.getItem('tokens');
+  //Work on this page more
 
   return (
     <>
