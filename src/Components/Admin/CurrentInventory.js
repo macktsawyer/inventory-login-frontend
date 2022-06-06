@@ -111,7 +111,7 @@ const CurrentInventory = (props) => {
                             <ul className="itemList">
                             <li><strong>{i.item}</strong></li>
                             <li>{truncateDesc(i.description)}</li>
-                            <li><strong>{i.price}</strong></li> // Work on styles further
+                            <li><strong>{i.price}</strong></li> 
                             </ul>
                         </Card>
                         </Grid>
