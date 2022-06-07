@@ -14,6 +14,9 @@ const Home = () => {
             <div>Home</div>
             <h3>Welcome</h3>
         </section>
+        <section>
+          Hello world
+        </section>
         <footer className="footerBar">
           {token === 'null'  
           
