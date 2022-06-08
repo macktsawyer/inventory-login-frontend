@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
+import Paper from '@mui/material/Paper';
+import Card from '@mui/material/Card';
 import NavBar from './NavBar.js';
 import '../Styles/Home.scss';
 
@@ -15,7 +17,11 @@ const Home = () => {
             <h3>Welcome</h3>
         </section>
         <section>
-          Hello world
+          <Paper>
+            <Card>
+              Hello there
+            </Card>
+          </Paper>
         </section>
         <footer className="footerBar">
           {token === 'null'  
