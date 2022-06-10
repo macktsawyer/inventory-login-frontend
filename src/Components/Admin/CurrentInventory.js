@@ -159,13 +159,13 @@ const CurrentInventory = (props) => {
                         <li>{deleteItem.description}</li>
                         <li>{deleteItem.price}</li>
                     </ul>
-                    <Button onClick={(e) => {
+                    <button onClick={(e) => {
                             e.preventDefault();
-                            deleteConfirmed(e, deleteItem._id, deleteItem.id)}}>Confirm Delete</Button>
-                    <Button onClick={(e) => {
+                            deleteConfirmed(e, deleteItem._id, deleteItem.id)}}>Confirm Delete</button>
+                    <button onClick={(e) => {
                             e.preventDefault();
                             setDeleteVisible(false);;
-                            }}>Cancel</Button>
+                            }}>Cancel</button>
                 </Card>
             </Paper>
             <div className={"blindingBackground " + (deleteVisible === true ? 'active' : 'hidden')}>
