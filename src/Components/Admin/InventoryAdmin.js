@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Button from '@mui/material/Button';
-import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import CircularProgress from '@mui/material/CircularProgress';
 import CurrentInventory from './CurrentInventory';
@@ -120,7 +118,7 @@ const InventoryAdmin = () => {
   return (
     <div className="inventoryMaster">
       <div>{user}'s Inventory Admin</div>
-      <Box className="newItemFormBox">
+      <div className="newItemFormBox">
         <form onSubmit={handleSubmit} className="newItemForm">
           <TextField 
           id="standard-basic" 
@@ -169,13 +167,13 @@ const InventoryAdmin = () => {
 
           <br />
 
-          <Button
+          <button
           className="inventorySubmit" 
           type="submit"
-          style={{marginTop: "15px"}}>Add Inventory</Button>
+          style={{marginTop: "15px"}}>Add Inventory</button>
         </form>
         {errorMessage && <div>{errorMessage}</div>}
-      </Box>
+      </div>
         < CurrentInventory itemList={itemInfo} deleteItem={handleDelete} />
     </div>
   )
