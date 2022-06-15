@@ -145,8 +145,8 @@ const CurrentInventory = (props) => {
                     </Card>
                 }
             </Paper>
-            <Paper elevation={5} className={"deleteWarning " + (deleteVisible === true ? 'active' : 'hidden')}>
-                <Card elevation={5} className="deleteCard">
+            <div className={"deleteWarning " + (deleteVisible === true ? 'active' : 'hidden')}>
+                <div className="deleteCard">
                     <h4>{deleteItem.item}</h4>
                     <Image 
                         cloudName="disgd9pk6"
@@ -166,8 +166,8 @@ const CurrentInventory = (props) => {
                             e.preventDefault();
                             setDeleteVisible(false);;
                             }}>Cancel</button>
-                </Card>
-            </Paper>
+                </div>
+            </div>
             <div className={"blindingBackground " + (deleteVisible === true ? 'active' : 'hidden')}>
             </div>
         </div>
