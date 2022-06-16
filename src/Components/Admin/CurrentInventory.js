@@ -120,9 +120,9 @@ const CurrentInventory = (props) => {
                     })}
                 </Grid>
             </Paper>
-            <Paper key={expandedItem.id} className={"expandedView " + (isActive === expandedItem._id ? 'active' : 'hidden')}>
+            <div key={expandedItem.id} className={"expandedView " + (isActive === expandedItem._id ? 'active' : 'hidden')}>
                 {
-                    <Card key={expandedItem._id} className="expandedCard" elevation={5}>
+                    <div key={expandedItem._id} className="expandedCard" elevation={5}>
                         <div key={expandedItem._id} className={`${isActive === expandedItem._id ? 'active' : 'hidden'}`}>
                             <Image
                             cloudName="disgd9pk6"
@@ -142,9 +142,9 @@ const CurrentInventory = (props) => {
                                 <li style={{listStyle: "none"}}>{expandedItem.price}</li> 
                             </ul>
                         </div>
-                    </Card>
+                    </div>
                 }
-            </Paper>
+            </div>
             <div className={"deleteWarning " + (deleteVisible === true ? 'active' : 'hidden')}>
                 <div className="deleteCard">
                     <h4>{deleteItem.item}</h4>
