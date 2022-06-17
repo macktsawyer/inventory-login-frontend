@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import Paper from '@mui/material/Paper';
 import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
-import Button from '@mui/material/Button';
 import { Image } from 'cloudinary-react';
 import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
 import CloseIcon from '@mui/icons-material/Close';
@@ -71,7 +69,7 @@ const CurrentInventory = (props) => {
 
     return (
         <div className="currentInventoryMain">
-            <Paper elevation={5} className="inventoryShowcase">
+            <div elevation={5} className="inventoryShowcase">
                 {loading && <CircularProgress />}
                 <br />
                 <strong>Inventory</strong>
@@ -119,7 +117,7 @@ const CurrentInventory = (props) => {
                         )
                     })}
                 </Grid>
-            </Paper>
+            </div>
             <div key={expandedItem.id} className={"expandedView " + (isActive === expandedItem._id ? 'active' : 'hidden')}>
                 {
                     <div key={expandedItem._id} className="expandedCard" elevation={5}>
