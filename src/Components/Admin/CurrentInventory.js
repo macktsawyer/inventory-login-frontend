@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
 import { Image } from 'cloudinary-react';
 import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
@@ -78,9 +77,8 @@ const CurrentInventory = (props) => {
                     return (
                         <>
                         <Grid item key={i._id}>
-                        <Card 
-                        className="itemCard"
-                        elevation={5}>
+                        <div 
+                        className="itemCard">
                             <div className="cardButtons">
                             <div className="editIcon">
                                 <button
@@ -111,7 +109,7 @@ const CurrentInventory = (props) => {
                             <li>{truncateDesc(i.description)}</li>
                             <li><strong>{i.price}</strong></li> 
                             </ul>
-                        </Card>
+                        </div>
                         </Grid>
                         </>
                         )
