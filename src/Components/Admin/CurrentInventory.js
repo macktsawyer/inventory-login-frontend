@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid';
 import { Image } from 'cloudinary-react';
-import HighlightOffOutlinedIcon from '@mui/icons-material/HighlightOffOutlined';
-import CloseIcon from '@mui/icons-material/Close';
-import CircularProgress from '@mui/material/CircularProgress';
 import EditIcon from '@mui/icons-material/Edit';
 import '../../Styles/CurrentInventory.scss';
 import { useNavigate } from 'react-router-dom';
@@ -68,8 +65,8 @@ const CurrentInventory = (props) => {
 
     return (
         <div className="currentInventoryMain">
-            <div elevation={5} className="inventoryShowcase">
-                {loading && <CircularProgress />}
+            <div className={"inventoryShowcase " + (deleteVisible === true ? 'hidden' : 'active')}>
+                {loading && <div><strong>Loading...</strong></div>}
                 <br />
                 <strong>Inventory</strong>
                 <Grid container spacing={2}>
@@ -91,7 +88,7 @@ const CurrentInventory = (props) => {
                                 <button 
                                 className="deleteButton"
                                 onClick={(e) => {
-                                    deleteClick(i._id, e, i)}}><HighlightOffOutlinedIcon sx={{color: "red"}} /></button>
+                                    deleteClick(i._id, e, i)}}><div className="closeX">x</div></button>
                             </div>
                             </div>
                             {i.publicId ? <Image 
@@ -102,7 +99,7 @@ const CurrentInventory = (props) => {
                             crop="scale"
                             /> 
                             : 
-                            <CircularProgress />
+                            <div><strong>Loading...</strong></div>
                             }
                             <ul className="itemList">
                             <li><strong>{i.item}</strong></li>
@@ -131,7 +128,7 @@ const CurrentInventory = (props) => {
                             onClick={(e) => {
                             e.preventDefault();
                             setIsActive('');
-                            }}><CloseIcon sx={{color: "red"}} /></button> 
+                            }}><div className="closeX">x</div></button> 
                             <h5>{expandedItem.item}</h5>
                             <ul>
                                 <li style={{listStyle: "none"}}>{expandedItem.description}</li>

@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import Button from '@mui/material/Button';
-import Paper from '@mui/material/Paper';
-import Card from '@mui/material/Card';
 import Grid from '@mui/material/Grid';
 import { Image } from 'cloudinary-react';
 import NavBar from './NavBar.js';
@@ -33,12 +30,12 @@ const Inventory = () => {
 
         <div className="mainContent">
             Inventory
-            <Paper className="itemPaper">
+            <div className="itemPaper">
               <Grid container spacing={2}>
                 {itemInfo && itemInfo.map((i) => {
                   return (
                   <Grid item key={i.id}>
-                    <Card className="itemCard" elevation={5}>
+                    <div className="itemCard">
                       {<Image 
                         cloudName="disgd9pk6"
                         className="itemImage"
@@ -50,12 +47,12 @@ const Inventory = () => {
                         <li className="itemList">{i.description}</li>
                         <li className="itemList">{i.price}</li>
                       </ul>
-                    </Card>
+                    </div>
                   </Grid>
                   )
                 })}
               </Grid>
-            </Paper>
+            </div>
         </div>
 
         <footer className="footerBar">
@@ -64,15 +61,15 @@ const Inventory = () => {
           ?
 
           <div>
-            <Link to='/Login'><Button variant="text"><strong>Login</strong></Button></Link>
-            <Link to='/Register'><Button variant="text"><strong>Register</strong></Button></Link>
+            <Link to='/Login'><button variant="text"><strong>Login</strong></button></Link>
+            <Link to='/Register'><button variant="text"><strong>Register</strong></button></Link>
           </div>
 
           :
 
           <div>
-            <Link to='/Admin'><Button variant="text"><strong>Dashboard</strong></Button></Link>
-            <Link to='/Logout'><Button variant="text"><strong>Logout</strong></Button></Link>
+            <Link to='/Admin'><button variant="text"><strong>Dashboard</strong></button></Link>
+            <Link to='/Logout'><button variant="text"><strong>Logout</strong></button></Link>
           </div>
           }
 

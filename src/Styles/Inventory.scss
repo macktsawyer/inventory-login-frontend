@@ -8,15 +8,18 @@
 }
 
 .itemPaper {
+    display: flex;
     min-height: 90%;
-    width: 90%;
+    width: 95%;
     align-self: center;
     overflow: scroll;
     overflow-x: hidden;
+    border: solid 1px grey;
     .itemCard {
         width: 15vw;
         height: 30vh;
         margin: 20px;
+        border: solid 1px grey;
         .itemImage {
             margin-top: 10px;
             width: 8vw;
