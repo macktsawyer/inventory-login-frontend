@@ -7,7 +7,9 @@ const NavBar = () => {
     <>
         <ul className="navBar">
             <Link to='/'><button variant="text"><strong>Home</strong></button></Link>
+            <strong style={{color: "blue"}}>•</strong>
             <Link to='/About'><button variant="text"><strong>About</strong></button></Link>
+            <strong style={{color: "blue"}}>•</strong>
             <Link to='/Inventory'><button variant="text"><strong>Inventory</strong></button></Link>
         </ul>
     </>

@@ -5,7 +5,6 @@
     text-decoration: none;
     top: 0;
     margin-top: 0;
-    padding: 3px;
     a {
         text-decoration: none;
     }
@@ -22,3 +21,12 @@
         text-decoration: none;
     }
 }
+
+button {
+    background-color: #b2d4f7;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 5px;
+    cursor: pointer;
+  }

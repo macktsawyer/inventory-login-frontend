@@ -27,6 +27,7 @@ const Home = () => {
 
           <div>
             <Link to='/Login'><button variant="text"><strong>Login</strong></button></Link>
+            <strong style={{color: "blue"}}>•</strong>
             <Link to='/Register'><button variant="text"><strong>Register</strong></button></Link>
           </div>
 
@@ -34,6 +35,7 @@ const Home = () => {
 
           <div>
             <Link to='/Admin'><button variant="text"><strong>Dashboard</strong></button></Link>
+            <strong style={{color: "blue"}}>•</strong>
             <Link to='/Logout'><button variant="text"><strong>Logout</strong></button></Link>
           </div>
           }
