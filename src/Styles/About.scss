@@ -5,7 +5,7 @@
     min-width: 90%;
     font-family: 'Roboto', sans-serif;
     .aboutMainPaper {
-        min-height: 80vh;
+        min-height: 100vh;
         min-width: 80vw;
         justify-self: center;
         align-self: center;
@@ -19,6 +19,7 @@
             height: 40vh;
             max-width: 100%;
             font-family: 'Roboto', sans-serif;
+            margin-top: 100px;
         }
     }
 }
