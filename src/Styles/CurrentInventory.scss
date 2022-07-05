@@ -112,12 +112,14 @@
             border: 1px solid red;
             color: red;
             cursor: pointer;
-            .closeX {
-                font-size: 50px;
-                transform: translate(0, -10px)
-            }
         }
     }
+}
+
+.closeX {
+    display: inline-block;
+    font-size: 50px;
+    transform: translateY(-5px);
 }
 
 .deleteWarning {
