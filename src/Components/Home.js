@@ -16,7 +16,7 @@ const Home = () => {
         <section>
           <div>
             <div>
-              Hello there
+              Hello there and welcome to the store
             </div>
           </div>
         </section>
