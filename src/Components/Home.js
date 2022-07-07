@@ -16,7 +16,7 @@ const Home = () => {
         <section>
           <div>
             <div>
-              Hello there and welcome to the store
+              Hello there and welcome to the store. Take a look around!
             </div>
           </div>
         </section>
