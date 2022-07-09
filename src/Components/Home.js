@@ -18,6 +18,7 @@ const Home = () => {
             <div>
               Hello there and welcome to the store. Take a look around!
             </div>
+            <img alt="random"></img>
           </div>
         </section>
         <footer className="footerBar">
