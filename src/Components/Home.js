@@ -16,7 +16,7 @@ const Home = () => {
         <section>
           <div>
             <div>
-              Hello there and welcome to the store. Take a look around!
+              Hello there and welcome to the store. Take a look around! Visit our inventory!
             </div>
             <img alt="random"></img>
           </div>
