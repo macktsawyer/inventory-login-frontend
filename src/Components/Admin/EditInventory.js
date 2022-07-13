@@ -52,7 +52,7 @@ const EditInventory = () => {
 
   return (
     <>
-        <Link className="homeButton" to='/'><Button variant="text"><strong>Home</strong></Button></Link> 
+        <Link className="homeButton" to='/'><button variant="text"><strong>Home</strong></button></Link> 
         <div className="editMainContent">
             <div>EditInventory</div>
 
@@ -120,15 +120,15 @@ const EditInventory = () => {
           ?
 
           <div>
-            <Link to='/Login'><Button variant="text"><strong>Login</strong></Button></Link>
-            <Link to='/Register'><Button variant="text"><strong>Register</strong></Button></Link>
+            <Link to='/Login'><button variant="text"><strong>Login</strong></button></Link>
+            <Link to='/Register'><button variant="text"><strong>Register</strong></button></Link>
           </div>
 
           :
 
           <div>
-            <Link to='/Admin'><Button variant="text"><strong>Dashboard</strong></Button></Link>
-            <Link to='/Logout'><Button variant="text"><strong>Logout</strong></Button></Link>
+            <Link to='/Admin'><button variant="text"><strong>Dashboard</strong></button></Link>
+            <Link to='/Logout'><button variant="text"><strong>Logout</strong></button></Link>
           </div>
           }
 
