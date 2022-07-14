@@ -98,17 +98,17 @@ const EditInventory = () => {
                         className="inputField" />
 
 
-                        <Button
+                        <button
                         className="editSubmitButton" 
                         type="submit"
-                        style={{marginTop: "15px"}}>Confirm Edit</Button>
+                        style={{marginTop: "15px"}}>Confirm Edit</button>
                     </form>
-                    <Button
+                    <button
                         className="editSubmitButton" 
                         onClick={(() => {
                             Navigate('/Admin')
                         })}
-                        style={{marginTop: "15px"}}>Go Back</Button>
+                        style={{marginTop: "15px"}}>Go Back</button>
                 </Card>
             </Paper>
         </div>
