@@ -91,4 +91,7 @@ button {
     margin: 5px;
     padding: 5px;
     cursor: pointer;
+    &:hover {
+        background-color: #7d9cbb;
+    }
   }
