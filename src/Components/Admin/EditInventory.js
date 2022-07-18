@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import TextField from '@mui/material/TextField';
-import Paper from '@mui/material/Paper';
-import Card from '@mui/material/Card';
 import { Image } from 'cloudinary-react';
 import { Link } from 'react-router-dom';
 import '../../Styles/EditInventory.scss';
@@ -55,8 +53,8 @@ const EditInventory = () => {
         <div className="editMainContent">
             <div>EditInventory</div>
 
-            <Paper className="editFormPaper">
-                <Card className="editFormCard">
+            <div className="editFormPaper">
+                <div className="editFormCard">
                     <Image 
                         cloudName="disgd9pk6"
                         className="editItemImage"
@@ -108,8 +106,8 @@ const EditInventory = () => {
                             Navigate('/Admin')
                         })}
                         style={{marginTop: "15px"}}>Go Back</button>
-                </Card>
-            </Paper>
+                </div>
+            </div>
         </div>
 
 
