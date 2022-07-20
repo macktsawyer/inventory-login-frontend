@@ -51,7 +51,7 @@ const EditInventory = () => {
     <>
         <Link className="homeButton" to='/'><button variant="text"><strong>Home</strong></button></Link> 
         <div className="editMainContent">
-            <div>EditInventory</div>
+            <div>Edit Your Inventory</div>
 
             <div className="editFormPaper">
                 <div className="editFormCard">
