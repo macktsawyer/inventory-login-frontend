@@ -92,13 +92,13 @@ const EditInventory = () => {
                         name="editItemPrice"
                         value={ editingItem.editItemPrice}
                         onChange={handleEditOnChange}
-                        className="inputField" />
+                        className="inputField"  />
 
 
                         <button
                         className="editSubmitButton" 
                         type="submit"
-                        style={{marginTop: "15px"}}>Confirm Edit To Inventory</button>
+                        style={{marginTop: "15px"}}>Confirm Your Edit To Inventory</button>
                     </form>
                     <button
                         className="editSubmitButton" 
