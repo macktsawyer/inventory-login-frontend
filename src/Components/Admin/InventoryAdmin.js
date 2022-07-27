@@ -172,7 +172,7 @@ const InventoryAdmin = () => {
           type="submit"
           style={{marginTop: "15px"}}>Add Inventory</button>
         </form>
-        {errorMessage && <div>{errorMessage}</div>}
+        {errorMessage && <div className="error">{errorMessage}</div>}
       </div>
         < CurrentInventory itemList={itemInfo} deleteItem={handleDelete} />
     </div>
