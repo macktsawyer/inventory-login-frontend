@@ -69,49 +69,49 @@ const CurrentInventory = (props) => {
                 {loading && <div><strong>Loading...</strong></div>}
                 <br />
                 <strong>Inventory</strong>
-                <Grid container spacing={2}>
+                <div className="gridContainer">
                     {itemInfo && !loading && itemInfo.map((i) => {
                     return (
                         <>
-                        <Grid item key={i._id}>
-                        <div 
-                        className="itemCard">
-                            <div className="cardButtons">
-                            <div className="editIcon">
-                                <button
-                                className="editButton" 
-                                onClick={(e) => {
-                                handleEditLogoClick(i._id, e, i)
-                                }} ><EditIcon /></button>
+                        <div className="gridContainer" key={i._id}>
+                            <div 
+                            className="itemCard">
+                                <div className="cardButtons">
+                                <div className="editIcon">
+                                    <button
+                                    className="editButton" 
+                                    onClick={(e) => {
+                                    handleEditLogoClick(i._id, e, i)
+                                    }} ><EditIcon /></button>
+                                </div>
+                                <div key={i._id} className="deleteIcon">
+                                    <button 
+                                    className="deleteButton"
+                                    onClick={(e) => {
+                                        deleteClick(i._id, e, i)}}><div className="closeX">x</div></button>
+                                </div>
+                                </div>
+                                {i.publicId ? <Image 
+                                cloudName="disgd9pk6"
+                                className="itemImage"
+                                onClick={(e) => {imagePopup(e, i._id, i)}}
+                                publicId={i.publicId} 
+                                crop="scale"
+                                /> 
+                                : 
+                                <div><strong>Loading...</strong></div>
+                                }
+                                <ul className="itemList">
+                                <li><strong>{i.item}</strong></li>
+                                <li>{truncateDesc(i.description)}</li>
+                                <li><strong>{i.price}</strong></li> 
+                                </ul>
                             </div>
-                            <div key={i._id} className="deleteIcon">
-                                <button 
-                                className="deleteButton"
-                                onClick={(e) => {
-                                    deleteClick(i._id, e, i)}}><div className="closeX">x</div></button>
-                            </div>
-                            </div>
-                            {i.publicId ? <Image 
-                            cloudName="disgd9pk6"
-                            className="itemImage"
-                            onClick={(e) => {imagePopup(e, i._id, i)}}
-                            publicId={i.publicId} 
-                            crop="scale"
-                            /> 
-                            : 
-                            <div><strong>Loading...</strong></div>
-                            }
-                            <ul className="itemList">
-                            <li><strong>{i.item}</strong></li>
-                            <li>{truncateDesc(i.description)}</li>
-                            <li><strong>{i.price}</strong></li> 
-                            </ul>
                         </div>
-                        </Grid>
                         </>
                         )
                     })}
-                </Grid>
+                </div>
             </div>
             <div key={expandedItem.id} className={"expandedView " + (isActive === expandedItem._id ? 'active' : 'hidden')}>
                 {
