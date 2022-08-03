@@ -15,22 +15,27 @@
     overflow: scroll;
     overflow-x: hidden;
     border: solid 1px grey;
-    .itemCard {
-        width: 15vw;
-        height: 30vh;
-        margin: 20px;
-        border: solid 1px grey;
-        .itemImage {
-            margin-top: 10px;
-            width: 8vw;
-            cursor: pointer;
-        }
-        .itemList {
-            list-style-type: none;
-            margin-right: 25px;
-            padding: 5px;
-            font-size: 1.5vh;
+    .gridContainer {
+        display: flex;
+        margin-left: 10px;
+        .itemCard {
+            width: 15vw;
+            height: 30vh;
+            margin: 20px;
+            border: solid 1px grey;
+            .itemImage {
+                margin-top: 10px;
+                width: 8vw;
+                cursor: pointer;
+            }
+            .itemList {
+                list-style-type: none;
+                margin-right: 25px;
+                padding: 5px;
+                font-size: 1.5vh;
+            }
         }
     }
+    
 }
 

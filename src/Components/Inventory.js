@@ -31,7 +31,7 @@ const Inventory = () => {
         <div className="mainContent">
             Inventory
             <div className="itemPaper">
-              <Grid container spacing={2}>
+              <div className="gridContainer">
                 {itemInfo && itemInfo.map((i) => {
                   return (
                   <Grid item key={i.id}>
@@ -51,7 +51,7 @@ const Inventory = () => {
                   </Grid>
                   )
                 })}
-              </Grid>
+              </div>
             </div>
         </div>
 
