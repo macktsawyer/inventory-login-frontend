@@ -18,6 +18,9 @@ const Home = () => {
             <div>
               Hello there and welcome to the store. Take a look around! Visit our inventory!
             </div>
+            <div>
+              <img src="https://cdn.pixabay.com/photo/2018/05/02/09/29/auto-3368094_960_720.jpg" />
+            </div>
           </div>
         </section>
         <footer className="footerBar">
