@@ -19,7 +19,7 @@ const Home = () => {
               Hello there and welcome to the store. Take a look around! Visit our inventory!
             </div>
             <div>
-              <img alt="example photo of an antique car for sale" src="https://cdn.pixabay.com/photo/2018/05/02/09/29/auto-3368094_960_720.jpg" />
+              <img alt="example photo of an antique car for sale and exhibit" src="https://cdn.pixabay.com/photo/2018/05/02/09/29/auto-3368094_960_720.jpg" />
             </div>
           </div>
         </section>
